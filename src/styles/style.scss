@@ -1,0 +1,50 @@
+@import 'bootstrap/scss/bootstrap';
+
+$background-start: rgba(255, 222, 97, 0.4); // #FFDE61 with 40% opacity
+$background-end: rgba(255, 125, 90, 0.4);   // #FF7D5A with 40% opacity
+$navbar-color: #F27B5B;
+$navbar-input-color: #FFDB7F;
+
+body {
+  background: linear-gradient($background-start, $background-end);
+  min-height: 100vh;
+  margin: 0;
+}
+
+.navbar {
+  background-color: $navbar-color;
+
+  .navbar-brand img{
+    width: 100px;
+    height: auto;
+    max-height: 100%;
+    margin-left: 20px;
+  }
+
+  form {
+    margin-right: 900px;
+    width: 300px;
+    outline: none;
+
+    input {
+      background-image: url("../../public/images/magnifying_glass.png");
+      background-repeat: no-repeat;
+      background-position: left 10px center;
+      background-size: 25px 25px;
+      padding-left: 45px;
+      background-color: $navbar-input-color;
+      outline: none;
+
+      &::placeholder{
+        color: black;
+        font-weight: 500;
+        opacity: 1;
+      }
+    }
+
+    :focus {
+      background-color: $navbar-input-color;
+      outline: none;
+    } 
+  }
+}
