@@ -2,10 +2,11 @@
 import { defineComponent } from 'vue';
 import NavbarDesktop from './components/NavbarDesktop.vue';
 import NavbarMobile from './components/NavbarMobile.vue';
+import SidebarDesktop from './components/SidebarDesktop.vue';
 
 export default defineComponent({
   name: 'App',
-  components: { NavbarDesktop, NavbarMobile },
+  components: { NavbarDesktop, NavbarMobile, SidebarDesktop },
   data() {
     return {
 
@@ -18,6 +19,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <NavbarDesktop class="d-none d-lg-block" />
-  <NavbarMobile class="d-block d-lg-none" />
+  <NavbarDesktop/>
+  <NavbarMobile/>
+  <SidebarDesktop />
 </template>

@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg d-block d-lg-none">
         <div class="container-fluid">
             <div class="col-sm-1">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
@@ -13,17 +13,24 @@
             </div>
         
             <div class="col-sm-3">
-                <button class="btn" id="searchIcon" data-toggle="modal" data-target="#fullPageForm">
+                <button class="btn" id="searchIcon" data-bs-toggle="modal" data-bs-target="#fullPageForm">
                     <img :src="magnifyingGlass" alt="Search">
                 </button>
-                
                 <a href="/user-profile">
                     <img :src="userIconMobile">
                 </a>
             </div>
         </div>
     </nav>
-    
+    <div class="modal fade" id="fullPageForm" tabindex="-1" aria-labelledby="fullPageFormLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <input type="search" class="form-control" placeholder="Search your recipe here...">
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script lang="ts">
@@ -55,6 +62,7 @@ export default defineComponent({
 
 <style scoped lang="scss">
 $navbar-color: #F27B5B;
+
 .navbar {
   background-color: $navbar-color;
 

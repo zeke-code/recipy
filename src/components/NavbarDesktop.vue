@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg align-items-center">
+  <nav class="navbar navbar-expand-lg align-items-center d-none d-lg-block">
     <div class="container-fluid">
       <div class="col-lg-3">
         <a class="navbar-brand" href="/">
