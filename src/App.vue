@@ -1,10 +1,11 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Navbar from './components/Navbar.vue';
+import NavbarDesktop from './components/NavbarDesktop.vue';
+import NavbarMobile from './components/NavbarMobile.vue';
 
 export default defineComponent({
   name: 'App',
-  components: { Navbar },
+  components: { NavbarDesktop, NavbarMobile },
   data() {
     return {
 
@@ -17,5 +18,6 @@ export default defineComponent({
 </script>
 
 <template>
-  <Navbar></Navbar>
+  <NavbarDesktop class="d-none d-lg-block" />
+  <NavbarMobile class="d-block d-lg-none" />
 </template>
