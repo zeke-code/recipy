@@ -1,7 +1,7 @@
 <template>
-  <div class="container-fluid d-none d-lg-block">
+  <div class="container-fluid">
     <div class="row">
-      <div class="col-lg-2 ps-5">
+      <div class="col-lg-2 ps-4">
         <!-- Sidebar content goes here -->
         <div class="sidebar">
           <ul class="nav flex-column">
@@ -56,6 +56,11 @@ export default defineComponent({
 <style scoped lang="scss">
 $text-color: #492318;
 $active-link-color: #FFCA42;
+
+.container-fluid {
+  display: none;
+}
+
 .sidebar {
   background-color: transparent;
   min-height: 100vh;
@@ -80,6 +85,12 @@ $active-link-color: #FFCA42;
     img {
       margin-right: 20px;
     }
+  }
+}
+
+@media (min-width: 1207px) {
+  .container-fluid {
+    display: block;
   }
 }
 </style>

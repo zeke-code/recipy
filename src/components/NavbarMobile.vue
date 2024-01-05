@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand-lg d-block d-lg-none">
+    <nav class="navbar">
         <div class="container-fluid">
             <div class="col-sm-1">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
@@ -64,6 +64,7 @@ export default defineComponent({
 $navbar-color: #F27B5B;
 
 .navbar {
+display: block;
   background-color: $navbar-color;
 
   .navbar-brand img{
@@ -79,6 +80,12 @@ $navbar-color: #F27B5B;
         width: 30px;
         height: auto;
     }
+  }
+}
+
+@media (min-width: 1207px) {
+  .navbar {
+    display: none;
   }
 }
 </style>

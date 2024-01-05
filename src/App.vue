@@ -19,7 +19,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <NavbarDesktop/>
-  <NavbarMobile/>
+  <NavbarDesktop />
+  <NavbarMobile />
   <SidebarDesktop />
 </template>

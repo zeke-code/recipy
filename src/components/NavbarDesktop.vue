@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg align-items-center d-none d-lg-block">
+  <nav class="navbar navbar-expand-lg align-items-center">
     <div class="container-fluid">
       <div class="col-lg-3">
         <a class="navbar-brand" href="/">
@@ -74,6 +74,7 @@ $navbar-input-color: #FFDB7F;
 }
 
 .navbar {
+  display: none;
   background-color: $navbar-color;
   border-bottom: 1px solid black;
 
@@ -136,6 +137,12 @@ $navbar-input-color: #FFDB7F;
         background-color: $navbar-input-color;
       } 
     }
+  }
+}
+
+@media (min-width: 1207px) {
+  .navbar {
+    display: block;
   }
 }
 
