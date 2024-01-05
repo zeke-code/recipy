@@ -75,6 +75,7 @@ $navbar-input-color: #FFDB7F;
 
 .navbar {
   background-color: $navbar-color;
+  border-bottom: 1px solid black;
 
   .navbar-brand img {
     margin-left: 50px;
@@ -126,7 +127,7 @@ $navbar-input-color: #FFDB7F;
       @include reset-input;
 
       &::placeholder {
-        color: black;
+        color: #492318;
         font-weight: 500;
         opacity: 1;
       }
