@@ -1,26 +1,15 @@
 <template>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-lg-2 ps-4">
-        <!-- Sidebar content goes here -->
-        <div class="sidebar">
-          <ul class="nav flex-column">
-            <li class="nav-item"><a href="#" class="nav-link"><img :src="homeIcon">Home</a></li>
-            <li class="nav-item"><a href="#" class="nav-link"><img :src="fireIcon">Trending</a></li>
-            <li class="nav-item"><a href="#" class="nav-link"><img :src="exploreIcon">Explore</a></li>
-            <li class="nav-item"><a href="#" class="nav-link"><img :src="favoritesIcon">My Favorites</a></li>
-            <!-- More items... -->
-          </ul>
-        </div>
-      </div>
-
-      <!-- Main Content -->
-      <div class="col-lg-10">
-        <!-- Main content goes here -->
-        <div class="main-content">
-          <p>Your main content here...</p>
-        </div>
-      </div>
+  
+  <div class="col-lg-2 ps-4" id="column">
+    <div class="sidebar">
+    <!-- Sidebar content goes here -->
+      <ul class="nav flex-column">
+        <li class="nav-item"><a href="#" class="nav-link"><img :src="homeIcon">Home</a></li>
+        <li class="nav-item"><a href="#" class="nav-link"><img :src="fireIcon">Trending</a></li>
+        <li class="nav-item"><a href="#" class="nav-link"><img :src="exploreIcon">Explore</a></li>
+        <li class="nav-item"><a href="#" class="nav-link"><img :src="favoritesIcon">My Favorites</a></li>
+        <!-- More items... -->
+      </ul>
     </div>
   </div>
 </template>
@@ -57,11 +46,11 @@ export default defineComponent({
 $text-color: #492318;
 $active-link-color: #FFCA42;
 
-.container-fluid {
+#column {
   display: none;
 }
 
-.sidebar {
+#column {
   background-color: transparent;
   min-height: 100vh;
   border-right: 1px solid black;
@@ -89,7 +78,7 @@ $active-link-color: #FFCA42;
 }
 
 @media (min-width: 1207px) {
-  .container-fluid {
+  #column {
     display: block;
   }
 }

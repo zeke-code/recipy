@@ -19,7 +19,18 @@ export default defineComponent({
 </script>
 
 <template>
-  <NavbarDesktop />
-  <NavbarMobile />
-  <SidebarDesktop />
+  <div class="container-fluid">
+    <div class="row">
+    <NavbarDesktop />
+    <NavbarMobile />
+      <SidebarDesktop />
+      <div class="col-sm-12 col-lg-10 text-center">
+        <p>Placeholder text</p>
+      </div>
+    </div>
+  </div>
 </template>
+
+<style scoped lang="scss">
+
+</style>
