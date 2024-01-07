@@ -24,6 +24,8 @@ export default defineComponent({
     <div class="row">
     <NavbarDesktop />
     <NavbarMobile />
+    </div>
+    <div class="row justify-content-center">
     <SidebarDesktop />
     <Home class="mt-5" />
     </div>

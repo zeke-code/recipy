@@ -1,5 +1,5 @@
 <template>
-    <div class="col-sm-12 col-md-12 col-lg-10">
+    <div class="col-sm-12 col-md-12 col-lg-10 d-flex justify-content-center">
         <div class="post-container">
             <div class="post">
                 <h4 class="recipe-country">Italian 🇮🇹</h4>
@@ -65,6 +65,7 @@ $button-height: 40px;
     border-radius: 15px;
     padding: 10px;
     max-width: 641px;
+    height: fit-content;
     color: $post-text-color;
 
     .recipe-name {
@@ -153,13 +154,13 @@ $button-height: 40px;
         width: 2px;
     }
 }
-
+/*
 @media (min-width: 1207px) {
     .post-container {
         margin-left: 200px;
     }
 }
-
+*/
 @media (max-width: 767px) {
 
     .rate-button-container {
