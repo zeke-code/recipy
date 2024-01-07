@@ -44,7 +44,7 @@ export default defineComponent({
 
 <style scoped lang="scss">
 $text-color: #492318;
-$active-link-color: #FFCA42;
+$hover-link-color: #F27B5B;
 
 #column {
   display: none;
@@ -67,8 +67,12 @@ $active-link-color: #FFCA42;
     width: 90%;
     height: auto;
 
+    &:hover {
+      background-color: $hover-link-color;
+    }
+
     &:active {
-      background-color: #492318;
+      background-color: $hover-link-color;
     }
 
     img {

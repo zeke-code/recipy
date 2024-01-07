@@ -1,9 +1,9 @@
 <template>
-    <div class="col-sm-12 col-lg-10">
+    <div class="col-sm-12 col-md-12 col-lg-10">
         <div class="post-container">
             <div class="post">
-                <h4 class="recipe-subtitle">Italian 🇮🇹</h4>
-                <h3 class="recipe-name"> Carbonara Romana</h3>
+                <h4 class="recipe-country">Italian 🇮🇹</h4>
+                <h3 class="recipe-name">Carbonara Romana</h3>
                 <img class="post-image" :src="carbonaraimage">
                 <div class="button-container">
                     <div class="rate-button-container">
@@ -54,22 +54,24 @@ export default defineComponent({
 
 <style scoped lang="scss">
 $button-color: rgba(242, 123, 91, 0.37);
-$button-hover-color: rgba(236, 68, 21, 0.486);
+$button-hover-color: rgba(236, 68, 21, 0.61);
 $button-stroke: #6A3323;
 $post-text-color: #492318;
-$transparent-black: rgba(0, 0, 0, 0.3);
+$transparent-black: rgba(0, 0, 0, 0.267);
 $button-height: 40px;
 
 .post-container {
     outline: solid 2px $transparent-black;
     border-radius: 15px;
     padding: 10px;
-    width: 641px;
+    max-width: 641px;
     color: $post-text-color;
 
     .recipe-name {
         font-weight: bold;
+        margin: 0;
     }
+    
 
     .post-image {
         max-width: 100%;
@@ -105,7 +107,8 @@ $button-height: 40px;
         background-color: $button-color;
         width: fit-content;
         border-radius: 20px;
-        margin-left: 20px;
+        margin-left: 40px;
+        outline: solid 1px $transparent-black;
         
         img {
             align-self: center;
@@ -127,9 +130,10 @@ $button-height: 40px;
 
     &-share {
         width: 40px;
-        margin-left: 20px;
+        margin-left: 40px;
         border-radius: 20px;
         background-color: $button-color;
+        outline: solid 1px $transparent-black;
     }
 }
 
@@ -141,6 +145,7 @@ $button-height: 40px;
     height: fit-content;
     border-radius: 20px;
     background-color: $button-color;
+    outline: solid 1px $transparent-black;
 
     .divider {
         background-color: $transparent-black;
@@ -152,6 +157,42 @@ $button-height: 40px;
 @media (min-width: 1207px) {
     .post-container {
         margin-left: 200px;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .rate-button-container {
+        height: 30px;
+
+        .divider {
+            height: 30px;
+        }
+    }
+    .btn {
+        &-standard, &-emoji, &-share {
+            font-size: 14px; // Smaller font size
+            height: 30px; // Smaller height
+            padding: 5px 10px; // Adjust padding as needed
+            line-height: 1;
+
+            img {
+                width: 20px; // Smaller image
+                height: auto; // Maintain aspect ratio
+            }
+        }
+
+        &-standard {
+            margin-left: 10px;
+        }
+
+
+        &-share {
+            width: 30px; // Adjust the width for share button
+            margin-left: 10px;
+        }
+
+        // Adjust any other specific styles for mobile here
     }
 }
 
