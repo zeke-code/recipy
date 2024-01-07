@@ -13,29 +13,29 @@
                     <div class="offcanvas-body">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="#"><img :src="homeIcon">Home</a>
-                                <a class="nav-link" href="#"><img :src="fireIcon">Trending</a>
-                                <a class="nav-link" href="#"><img :src="exploreIcon">Explore</a>
-                                <a class="nav-link" href="#"><img :src="favoritesIcon">My Favorites</a>
-                                <a class="nav-link" href="#"><img :src="logoutIcon">Logout</a>
+                              <router-link to="/" class="nav-link"><img :src="homeIcon">Home</router-link>
+                              <router-link to="/trending" class="nav-link"><img :src="fireIcon">Trending</router-link>
+                              <router-link to="/explore" class="nav-link"><img :src="exploreIcon">Explore</router-link>
+                              <router-link to="/favorites" class="nav-link"><img :src="favoritesIcon">My Favorites</router-link>
+                              <router-link to="/logout" class="nav-link"><img :src="logoutIcon">Logout</router-link>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="col-sm-3">
-                <a class="navbar-brand" href="/">
+                <router-link to="/" class="navbar-brand">
                     <img :src="recipyLogo" alt="Recipy Logo">
-                </a>
+                </router-link>
             </div>
         
             <div class="col-sm-3">
                 <button class="btn" id="searchIcon" data-bs-toggle="modal" data-bs-target="#fullPageForm">
                     <img :src="magnifyingGlass" alt="Search">
                 </button>
-                <a href="/user-profile">
+                <router-link to="/user">
                     <img :src="userIconMobile">
-                </a>
+                </router-link>
             </div>
         </div>
     </nav>
