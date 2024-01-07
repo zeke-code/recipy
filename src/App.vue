@@ -3,10 +3,11 @@ import { defineComponent } from 'vue';
 import NavbarDesktop from './components/NavbarDesktop.vue';
 import NavbarMobile from './components/NavbarMobile.vue';
 import SidebarDesktop from './components/SidebarDesktop.vue';
+import Home from './pages/Home.vue';
 
 export default defineComponent({
   name: 'App',
-  components: { NavbarDesktop, NavbarMobile, SidebarDesktop },
+  components: { NavbarDesktop, NavbarMobile, SidebarDesktop, Home },
   data() {
     return {
 
@@ -23,10 +24,8 @@ export default defineComponent({
     <div class="row">
     <NavbarDesktop />
     <NavbarMobile />
-      <SidebarDesktop />
-      <div class="col-sm-12 col-lg-10 text-center">
-        <p>Placeholder text</p>
-      </div>
+    <SidebarDesktop />
+    <Home class="mt-5" />
     </div>
   </div>
 </template>

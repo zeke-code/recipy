@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar">
+    <nav class="navbar sticky-top">
         <div class="container-fluid">
             <div class="col-sm-1">
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
