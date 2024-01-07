@@ -4,10 +4,10 @@
     <div class="sidebar">
     <!-- Sidebar content goes here -->
       <ul class="nav flex-column">
-        <li class="nav-item"><a href="#" class="nav-link"><img :src="homeIcon">Home</a></li>
-        <li class="nav-item"><a href="#" class="nav-link"><img :src="fireIcon">Trending</a></li>
-        <li class="nav-item"><a href="#" class="nav-link"><img :src="exploreIcon">Explore</a></li>
-        <li class="nav-item"><a href="#" class="nav-link"><img :src="favoritesIcon">My Favorites</a></li>
+        <li class="nav-item"><router-link to="/" class="nav-link"><img :src="homeIcon">Home</router-link></li>
+        <li class="nav-item"><router-link to="/trending" class="nav-link"><img :src="fireIcon">Trending</router-link></li>
+        <li class="nav-item"><router-link to="/explore" class="nav-link"><img :src="exploreIcon">Explore</router-link></li>
+        <li class="nav-item"><router-link to="/favorites" class="nav-link"><img :src="favoritesIcon">My Favorites</router-link></li>
         <!-- More items... -->
       </ul>
     </div>

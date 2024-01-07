@@ -1,6 +1,6 @@
 <template>
     <div class="col-sm-12 col-md-12 col-lg-10 d-flex justify-content-center">
-        <div class="post-container">
+        <div class="post-container mt-5">
             <div class="post">
                 <h4 class="recipe-country">Italian 🇮🇹</h4>
                 <h3 class="recipe-name">Carbonara Romana</h3>
@@ -172,14 +172,14 @@ $button-height: 40px;
     }
     .btn {
         &-standard, &-emoji, &-share {
-            font-size: 14px; // Smaller font size
-            height: 30px; // Smaller height
-            padding: 5px 10px; // Adjust padding as needed
+            font-size: 14px;
+            height: 30px;
+            padding: 5px 10px;
             line-height: 1;
 
             img {
-                width: 20px; // Smaller image
-                height: auto; // Maintain aspect ratio
+                width: 20px;
+                height: auto;
             }
         }
 
@@ -189,11 +189,10 @@ $button-height: 40px;
 
 
         &-share {
-            width: 30px; // Adjust the width for share button
+            width: 30px;
             margin-left: 10px;
         }
 
-        // Adjust any other specific styles for mobile here
     }
 }
 

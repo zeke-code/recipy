@@ -2,9 +2,9 @@
   <nav class="navbar navbar-expand-lg align-items-center sticky-top">
     <div class="container-fluid">
       <div class="col-lg-3">
-        <a class="navbar-brand" href="/">
-            <img :src="recipyLogo" alt="Recipy Logo">
-        </a>
+        <router-link to="/" class="navbar-brand">
+          <img :src="recipyLogo" alt="Recipy Logo">
+        </router-link>
       </div>
       <div class="col-lg-6 ms-5">
         <form class="d-flex" role="search">
@@ -18,8 +18,8 @@
           supercoolusername
         </button>
         <div class="dropdown-menu" v-bind:class=" { 'show': showDropdown }">
-          <a class="dropdown-item" href="/">Profile</a>
-          <a class="dropdown-item" href="/">Logout</a>
+          <router-link to="/profile" class="dropdown-item">Profile</router-link>
+          <router-link to="/logout" class="dropdown-item">Logout</router-link>
         </div>
       </div>
       </div>
@@ -117,6 +117,8 @@ $navbar-input-color: #FFDB7F;
 
   form {
     width: 280px;
+    border: solid 1px black;
+    border-radius: 7px;
 
     input {
       background-image: url("@/assets/images/magnifying_glass.png");

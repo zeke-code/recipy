@@ -25,9 +25,9 @@ export default defineComponent({
     <NavbarDesktop />
     <NavbarMobile />
     </div>
-    <div class="row justify-content-center">
+    <div class="row">
     <SidebarDesktop />
-    <Home class="mt-5" />
+      <RouterView />
     </div>
   </div>
 </template>
