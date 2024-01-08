@@ -1,19 +1,21 @@
 <template>
-    <div class="col-sm-12 col-md-12 col-lg-10 d-flex justify-content-center">
-        <div class="post-wrapper mt-5">
-            <div class="post">
-                <h4 class="recipe-country">Italian 🇮🇹</h4>
-                <h3 class="recipe-name">Carbonara Romana</h3>
-                <img class="post-image" :src="carbonaraimage">
-                <div class="button-wrapper">
-                    <div class="rate-button-wrapper">
-                        <button type="button" class="btn btn-emoji">&#x1F60B; 13445</button>
-                        <div class="divider"></div>
-                        <button type="button" class="btn btn-emoji">&#x1F44E;</button>
+    <div class="col-sm-12 col-md-12 col-lg-10">
+        <div class="d-flex flex-column justify-content-center align-items-center">
+            <div v-for="post in datiPost" class="post-wrapper d-flex justify-content-center mt-5">
+                <div class="post">
+                    <h4 class="recipe-country">{{ post.country }}</h4>
+                    <h3 class="recipe-name">{{ post.title }}</h3>
+                    <img class="post-image" :src="carbonaraimage">
+                    <div class="button-wrapper">
+                        <div class="rate-button-wrapper">
+                            <button type="button" class="btn btn-emoji">&#x1F60B; {{ post.like_count }}</button>
+                            <div class="divider"></div>
+                            <button type="button" class="btn btn-emoji">&#x1F44E;</button>
+                        </div>
+                        <button type="button" class="btn btn-standard"><img :src="commentIcon">{{ post.comment_count }} </button>
+                        <button type="button" class="btn btn-standard"><img :src="favoriteIcon"> {{ post.favorite_count }}</button>
+                        <button type="button" class="btn btn-share"><img :src="shareIcon"></button>
                     </div>
-                    <button type="button" class="btn btn-standard"><img :src="commentIcon">156</button>
-                    <button type="button" class="btn btn-standard"><img :src="favoriteIcon">54</button>
-                    <button type="button" class="btn btn-share"><img :src="shareIcon"></button>
                 </div>
             </div>
         </div>
@@ -22,11 +24,13 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import axios from 'axios';
 import { useHead } from '@unhead/vue';
 import carbonaraimage from '@/assets/images/carbonara.jpg';
 import commentIcon from '@/assets/svg/comment_icon.svg';
 import favoriteIcon from '@/assets/svg/favorite_icon.svg';
 import shareIcon from '@/assets/svg/share_icon.svg';
+import { Post } from '../types';
 
 export default defineComponent({
     // Composition API used to define metadata as it is simpler, and I'm lazy.
@@ -43,6 +47,7 @@ export default defineComponent({
     },
     data() {
         return {
+            datiPost: [] as Post[],
             carbonaraimage,
             commentIcon,
             favoriteIcon,
@@ -51,11 +56,17 @@ export default defineComponent({
     },
 
     methods: {
-
+        getPosts() {
+            axios.get('/api/post')
+                .then(response => {
+                    this.datiPost = response.data
+                    console.log(response.data)
+            })
+        }
     },
 
     mounted() {
-        
+        this.getPosts();
     },
 
     beforeUnmount() {
