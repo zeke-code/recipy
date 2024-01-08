@@ -1,3 +1,18 @@
+export type CountryFlags = {
+    [key: string]: string;
+    Italy: string;
+    France: string;
+    Japan: string;
+    China: string;
+    India: string;
+    Mexico: string;
+    Spain: string;
+    Thailand: string;
+    Greece: string;
+    Turkey: string;
+    USA: string;
+}
+
 export interface Post {
     recipe_id: number;
     country: string;

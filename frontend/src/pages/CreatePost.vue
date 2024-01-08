@@ -77,16 +77,20 @@ $post-text-color: #492318;
 $button-stroke: #6A3323;
 $button-color: #f27c5bbb;
 $button-hover-color: #F27B5B;
+$wrapper-color: #f27c5b98;
 
 .create-post-wrapper {
-    outline: solid 2px $transparent-black;
-    border-radius: 10px;
+    border-radius: 5px;
     width: 60%;
     height: fit-content;
     color: $post-text-color;
+    /* background-color: $wrapper-color;
+    border: 1px solid $transparent-black;
+    box-shadow: 1px 4px 15px rgba(0, 0, 0, 0.4);
+    */
 
     h3 {
-        font-weight: bold;
+        font-weight: 600;
     }
 
     .form-centered {
@@ -116,6 +120,12 @@ $button-hover-color: #F27B5B;
         &:hover {
             background-color: $button-hover-color;
         }
+    }
+}
+
+@media (max-width: 1207px) {
+    .create-post-wrapper {
+        width: 100%;
     }
 }
 </style>

@@ -5,6 +5,8 @@ $background-end: rgba(255, 125, 90, 0.4);
 
 body {
   background: linear-gradient($background-start, $background-end);
+  background-attachment: fixed;
+  background-size: cover;
   min-height: 100vh;
   margin: 0;
 }

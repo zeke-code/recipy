@@ -118,6 +118,11 @@ $text-color: #492318;
 .offcanvas {
   .offcanvas-header {
     background-color: $navbar-color;
+    border-bottom: 1px solid black;
+  }
+
+  .offcanvas-title {
+    font-weight: 530;
   }
 
   .offcanvas-body {

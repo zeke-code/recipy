@@ -1,9 +1,9 @@
 <template>
     <div class="col-sm-12 col-md-12 col-lg-10">
         <div class="d-flex flex-column justify-content-center align-items-center">
-            <div v-for="post in datiPost" class="post-wrapper d-flex justify-content-center mt-5">
+            <div v-for="post in datiPost" class="post-wrapper d-flex justify-content-center mt-1">
                 <div class="post">
-                    <h4 class="recipe-country">{{ post.country }}</h4>
+                    <h4 class="recipe-country">{{ post.country }} {{ countryFlags[post.country] }}</h4>
                     <h3 class="recipe-name">{{ post.title }}</h3>
                     <img class="post-image" :src="carbonaraimage">
                     <div class="button-wrapper">
@@ -17,6 +17,8 @@
                         <button type="button" class="btn btn-share"><img :src="shareIcon"></button>
                     </div>
                 </div>
+
+                <div class="separator mt-4"></div>
             </div>
         </div>
     </div>
@@ -30,7 +32,7 @@ import carbonaraimage from '@/assets/images/carbonara.jpg';
 import commentIcon from '@/assets/svg/comment_icon.svg';
 import favoriteIcon from '@/assets/svg/favorite_icon.svg';
 import shareIcon from '@/assets/svg/share_icon.svg';
-import { Post } from '../types';
+import { Post, CountryFlags } from '../types';
 
 export default defineComponent({
     // Composition API used to define metadata as it is simpler, and I'm lazy.
@@ -48,10 +50,23 @@ export default defineComponent({
     data() {
         return {
             datiPost: [] as Post[],
+            countryFlags: {
+              Italy: '🇮🇹',
+              France: '🇫🇷',
+              Japan: '🇯🇵',
+              China: '🇨🇳',
+              India: '🇮🇳',
+              Mexico: '🇲🇽',
+              Spain: '🇪🇸',
+              Thailand: '🇹🇭',
+              Greece: '🇬🇷',
+              Turkey: '🇹🇷',
+              USA: '🇺🇸'
+            } as CountryFlags,
             carbonaraimage,
             commentIcon,
             favoriteIcon,
-            shareIcon
+            shareIcon,
         }
     },
 
@@ -77,7 +92,7 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-$button-color: #f27c5bbb;
+$button-color: #f36f4bad;
 $button-hover-color: #ec44159c;
 $button-stroke: #6A3323;
 $post-text-color: #492318;
@@ -85,16 +100,18 @@ $transparent-black: rgba(0, 0, 0, 0.267);
 $button-height: 40px;
 
 .post-wrapper {
-    outline: solid 2px $transparent-black;
-    border-radius: 15px;
     padding: 10px;
     max-width: 641px;
     height: fit-content;
+    flex-direction: column;
+    align-items: center;
     color: $post-text-color;
 
     .recipe-name {
         font-weight: bold;
         margin: 0;
+        margin-top: -6px;
+        margin-bottom: 12px;
     }
     
 
@@ -109,7 +126,7 @@ $button-height: 40px;
     .button-wrapper {
         display: flex;
         justify-content: center;
-        margin-top: 10px;
+        margin-top: 20px;
     }
 }
 
@@ -179,6 +196,12 @@ $button-height: 40px;
         height: 40px;
         width: 2px;
     }
+}
+
+.separator {
+    background-color: black;
+    height: 1px;
+    width: 100%;
 }
 /*
 @media (min-width: 1207px) {
