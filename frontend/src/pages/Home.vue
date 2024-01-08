@@ -1,12 +1,12 @@
 <template>
     <div class="col-sm-12 col-md-12 col-lg-10 d-flex justify-content-center">
-        <div class="post-container mt-5">
+        <div class="post-wrapper mt-5">
             <div class="post">
                 <h4 class="recipe-country">Italian 🇮🇹</h4>
                 <h3 class="recipe-name">Carbonara Romana</h3>
                 <img class="post-image" :src="carbonaraimage">
-                <div class="button-container">
-                    <div class="rate-button-container">
+                <div class="button-wrapper">
+                    <div class="rate-button-wrapper">
                         <button type="button" class="btn btn-emoji">&#x1F60B; 13445</button>
                         <div class="divider"></div>
                         <button type="button" class="btn btn-emoji">&#x1F44E;</button>
@@ -22,12 +22,25 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { useHead } from '@unhead/vue';
 import carbonaraimage from '@/assets/images/carbonara.jpg';
 import commentIcon from '@/assets/svg/comment_icon.svg';
 import favoriteIcon from '@/assets/svg/favorite_icon.svg';
 import shareIcon from '@/assets/svg/share_icon.svg';
 
 export default defineComponent({
+    // Composition API used to define metadata as it is simpler, and I'm lazy.
+    setup() {
+        useHead({
+            title: 'Home | Recipy',
+            meta: [
+                {
+                    name: 'description',
+                    content: 'Home page of Recipy.'
+                }
+            ]
+        })
+    },
     data() {
         return {
             carbonaraimage,
@@ -53,14 +66,14 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-$button-color: rgba(242, 123, 91, 0.37);
-$button-hover-color: rgba(236, 68, 21, 0.61);
+$button-color: #f27c5bbb;
+$button-hover-color: #ec44159c;
 $button-stroke: #6A3323;
 $post-text-color: #492318;
 $transparent-black: rgba(0, 0, 0, 0.267);
 $button-height: 40px;
 
-.post-container {
+.post-wrapper {
     outline: solid 2px $transparent-black;
     border-radius: 15px;
     padding: 10px;
@@ -82,9 +95,9 @@ $button-height: 40px;
         border-radius: 15px;
     }
 
-    .button-container {
+    .button-wrapper {
         display: flex;
-        align-items: center;
+        justify-content: center;
         margin-top: 10px;
     }
 }
@@ -105,11 +118,11 @@ $button-height: 40px;
     }
 
     &-standard {
-        background-color: $button-color;
         width: fit-content;
         border-radius: 20px;
-        margin-left: 40px;
+        margin-left: 30px;
         outline: solid 1px $transparent-black;
+        background-color: $button-color;
         
         img {
             align-self: center;
@@ -119,6 +132,8 @@ $button-height: 40px;
     }
 
     &-emoji {
+        background-color: transparent;
+
         &:first-child:hover {
             border-top-left-radius: 20px;
             border-bottom-left-radius: 20px;
@@ -131,14 +146,14 @@ $button-height: 40px;
 
     &-share {
         width: 40px;
-        margin-left: 40px;
+        margin-left: 30px;
         border-radius: 20px;
         background-color: $button-color;
         outline: solid 1px $transparent-black;
     }
 }
 
-.rate-button-container {
+.rate-button-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -163,7 +178,7 @@ $button-height: 40px;
 */
 @media (max-width: 767px) {
 
-    .rate-button-container {
+    .rate-button-wrapper {
         height: 30px;
 
         .divider {
