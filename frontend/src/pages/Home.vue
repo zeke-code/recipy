@@ -210,7 +210,7 @@ $button-height: 40px;
     }
 }
 */
-@media (max-width: 767px) {
+@media (max-width: 576px) {
 
     .rate-button-wrapper {
         height: 30px;

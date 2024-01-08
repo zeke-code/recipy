@@ -4,6 +4,7 @@ import { createHead } from '@unhead/vue'
 import App from './App.vue'
 import Home from './pages/Home.vue'
 import CreatePost from './pages/CreatePost.vue'
+import NotFound from './pages/NotFound.vue'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './styles/style.scss'
@@ -12,7 +13,8 @@ const router: Router = createRouter({
     history: createWebHistory(),
     routes: [
         { path: "/", component: Home},
-        { path: "/createpost", component: CreatePost}
+        { path: "/createpost", component: CreatePost},
+        { path: "/:pathMatch(.*)*", component: NotFound},
 
     ]
 })

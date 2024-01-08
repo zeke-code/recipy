@@ -9,6 +9,11 @@ app.use(history());
 
 app.use(postRouter);
 
+app.use(function(req, res, next) {
+    res.setHeader("Content-Type", "text/plain");
+    res.status(404).send("Ops... Pagina not found!");
+})
+
 app.listen(port, function() {
     console.log('Listening on port ' + port);
 })

@@ -21,7 +21,7 @@ export default defineComponent({
 
 <template>
   <div class="container-fluid">
-    <div class="row">
+    <div class="row sticky-top">
     <NavbarDesktop />
     <NavbarMobile />
     </div>
