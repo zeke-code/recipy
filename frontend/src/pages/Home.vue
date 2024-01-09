@@ -4,7 +4,7 @@
             <div v-for="post in datiPost" class="post-wrapper d-flex justify-content-center mt-1">
                 <div class="post">
                     <h4 class="recipe-country">{{ post.country }} {{ countryFlags[post.country] }}</h4>
-                    <h3 class="recipe-name">{{ post.title }}</h3>
+                    <h3 class="recipe-name">{{ post.title }} by {{ post.username }}</h3>
                     <img class="post-image" :src="'/img/' + post.img_post" alt="Recipe's picture">
                     <div class="button-wrapper">
                         <div class="rate-button-wrapper">

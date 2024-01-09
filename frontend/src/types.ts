@@ -24,3 +24,8 @@ export interface Post {
     favorite_count: number;
     img_post: string;
 }
+
+export interface User {
+    username: string,
+    hashPassword: string
+}
