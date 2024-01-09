@@ -8,7 +8,7 @@ export async function allPosts(req: Request, res: Response) {
         r.country, 
         r.username, 
         r.title, 
-        r.description,
+        r.img_post,
         COUNT(DISTINCT l.username) AS like_count,
         COUNT(DISTINCT c.comment_id) AS comment_count,
         COUNT(DISTINCT f.username) AS favorite_count

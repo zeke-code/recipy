@@ -1,6 +1,6 @@
 <template>
   
-  <div class="col-lg-2 ps-4" id="column">
+  <div class="col-lg-2 ps-4 position-fixed" id="column">
     <div class="sidebar">
     <!-- Sidebar content goes here -->
       <ul class="nav flex-column">
@@ -70,14 +70,14 @@ $hover-link-color: #F27B5B;
       background-color: $hover-link-color;
     }
 
-    &:active {
-      background-color: $hover-link-color;
-    }
-
     img {
       margin-right: 20px;
     }
   }
+
+  .router-link-active {
+      background-color: $hover-link-color;
+    }
 }
 
 @media (min-width: 1207px) {

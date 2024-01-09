@@ -1,20 +1,20 @@
 <template>
-    <div class="col-sm-12 col-md-12 col-lg-10">
+    <div class="col-sm-12 col-md-12 col-lg-10 offset-lg-2">
         <div class="d-flex flex-column justify-content-center align-items-center">
             <div v-for="post in datiPost" class="post-wrapper d-flex justify-content-center mt-1">
                 <div class="post">
                     <h4 class="recipe-country">{{ post.country }} {{ countryFlags[post.country] }}</h4>
                     <h3 class="recipe-name">{{ post.title }}</h3>
-                    <img class="post-image" :src="carbonaraimage">
+                    <img class="post-image" :src="'/img/' + post.img_post" alt="Recipe's picture">
                     <div class="button-wrapper">
                         <div class="rate-button-wrapper">
-                            <button type="button" class="btn btn-emoji">&#x1F60B; {{ post.like_count }}</button>
+                            <button type="button" class="btn btn-emoji" aria-label="Like post">&#x1F60B; {{ post.like_count }}</button>
                             <div class="divider"></div>
-                            <button type="button" class="btn btn-emoji">&#x1F44E;</button>
+                            <button type="button" class="btn btn-emoji" aria-label="Dislike post">&#x1F44E;</button>
                         </div>
-                        <button type="button" class="btn btn-standard"><img :src="commentIcon">{{ post.comment_count }} </button>
-                        <button type="button" class="btn btn-standard"><img :src="favoriteIcon"> {{ post.favorite_count }}</button>
-                        <button type="button" class="btn btn-share"><img :src="shareIcon"></button>
+                        <button type="button" class="btn btn-standard" aria-label="Comment post"><img :src="commentIcon" alt="Comments Icon">{{ post.comment_count }} </button>
+                        <button type="button" class="btn btn-standard" aria-label="Save in favorites post"><img :src="favoriteIcon" alt="Favorites Icon"> {{ post.favorite_count }}</button>
+                        <button type="button" class="btn btn-share" aria-label="Share the post"><img :src="shareIcon"></button>
                     </div>
                 </div>
 
@@ -28,7 +28,6 @@
 import { defineComponent } from 'vue';
 import axios from 'axios';
 import { useHead } from '@unhead/vue';
-import carbonaraimage from '@/assets/images/carbonara.jpg';
 import commentIcon from '@/assets/svg/comment_icon.svg';
 import favoriteIcon from '@/assets/svg/favorite_icon.svg';
 import shareIcon from '@/assets/svg/share_icon.svg';
@@ -63,7 +62,6 @@ export default defineComponent({
               Turkey: '🇹🇷',
               USA: '🇺🇸'
             } as CountryFlags,
-            carbonaraimage,
             commentIcon,
             favoriteIcon,
             shareIcon,

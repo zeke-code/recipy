@@ -22,4 +22,5 @@ export interface Post {
     like_count: number;
     comment_count: number;
     favorite_count: number;
+    img_post: string;
 }
