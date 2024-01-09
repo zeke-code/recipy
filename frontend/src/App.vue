@@ -20,11 +20,9 @@ export default defineComponent({
 </script>
 
 <template>
+  <NavbarDesktop />
+  <NavbarMobile />
   <div class="container-fluid">
-    <div class="row sticky-top">
-    <NavbarDesktop />
-    <NavbarMobile />
-    </div>
     <div class="row">
     <SidebarDesktop />
       <RouterView />

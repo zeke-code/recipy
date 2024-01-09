@@ -1,11 +1,15 @@
 import express, { Express } from 'express';
+import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
 import history from 'connect-history-api-fallback';
 import postRouter from './routes/post-router'
 
 const app: Express = express();
 const port: number = 3000;
 
-app.use(history());
+app.use(history())
+app.use(bodyParser.json())
+app.use(cookieParser())
 app.use(express.static('public'))
 app.use(express.static('dist-frontend'))
 

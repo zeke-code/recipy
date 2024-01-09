@@ -1,4 +1,17 @@
 <template>
+  <div class="modal fade" id="searchModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body">
+          <input type="search" class="form-control" placeholder="Search your recipe here...">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" id="closeModalButton" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="searchModalButton">Search</button>
+        </div>
+      </div>
+    </div>
+  </div>
     <nav class="navbar sticky-top">
         <div class="container-fluid">
             <div class="col-sm-1">
@@ -31,7 +44,7 @@
             </div>
         
             <div class="col-sm-3">
-                <button class="btn" id="searchIcon" data-bs-toggle="modal" data-bs-target="#fullPageForm">
+                <button class="btn" id="searchIcon" data-bs-toggle="modal" data-bs-target="#searchModal">
                     <img :src="magnifyingGlass" alt="Search">
                 </button>
                 <router-link to="/user">
@@ -40,15 +53,6 @@
             </div>
         </div>
     </nav>
-    <div class="modal fade" id="fullPageForm" tabindex="-1" aria-labelledby="fullPageFormLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-md">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <input type="search" class="form-control" placeholder="Search your recipe here...">
-                </div>
-            </div>
-        </div>
-    </div>
 </template>
 
 <script lang="ts">
@@ -145,11 +149,6 @@ $text-color: #492318;
         height: auto;
       }
     }
-  }
-
-  .separator {
-    border: solid 1px $separator-color;
-    width: 100%;
   }
 }
 
