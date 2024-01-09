@@ -17,6 +17,7 @@
                               <router-link to="/trending" class="nav-link"><img :src="fireIcon">Trending</router-link>
                               <router-link to="/explore" class="nav-link"><img :src="exploreIcon">Explore</router-link>
                               <router-link to="/favorites" class="nav-link"><img :src="favoritesIcon">My Favorites</router-link>
+                              <router-link to="/createpost" class="nav-link"><img :src="plusIcon">Create Post</router-link>
                               <router-link to="/logout" class="nav-link"><img :src="logoutIcon">Logout</router-link>
                             </li>
                         </ul>
@@ -58,6 +59,7 @@ import userIconMobile from '@/assets/svg/user_icon_mobile.svg'
 import homeIcon from '@/assets/svg/home_icon.svg';
 import fireIcon from '@/assets/svg/fire_icon.svg';
 import exploreIcon from '@/assets/svg/explore_icon.svg';
+import plusIcon from '@/assets/svg/plus_icon.svg';
 import favoritesIcon from '@/assets/svg/star_icon.svg';
 import logoutIcon from '@/assets/svg/logout_icon.svg';
 
@@ -70,6 +72,7 @@ export default defineComponent({
             homeIcon,
             exploreIcon,
             favoritesIcon,
+            plusIcon,
             fireIcon,
             logoutIcon
         }

@@ -1,5 +1,5 @@
 <template>
-    <div class="col-sm-12 col-md-12 col-lg-10 d-flex justify-content-center">
+    <div class="col-sm-12 col-md-12 col-lg-10 offset-lg-2 d-flex justify-content-center">
         <div class="create-post-wrapper mt-5 mb-5">
             <form @submit.prevent="submitForm" class="form-centered mt-3">
                 <h3>Create a post</h3>
