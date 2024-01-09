@@ -7,14 +7,14 @@
         <form class="d-flex me-3" role="search">
           <input class="form-control" type="search" placeholder="Search recipes here" aria-label="Search">
         </form>
-      <div class="dropdown me-5" v-bind:class=" { 'show': showDropdown }">
-        <button class="btn dropdown-toggle" type="button" @click="toggleDropdown" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" :aria-expanded="showDropdown">
-          <img :src="userIcon" id="userIcon-svg">
-          supercoolusername
-        </button>
-        <div class="dropdown-menu" v-bind:class=" { 'show': showDropdown }">
-          <router-link to="/profile" class="dropdown-item">Profile</router-link>
-          <router-link to="/login" class="dropdown-item">Login</router-link>
+        <div class="dropdown me-5">
+          <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true">
+            <img :src="userIcon" id="userIcon-svg">
+            supercoolusername
+          </button>
+          <div class="dropdown-menu">
+            <router-link to="/profile" class="dropdown-item">Profile</router-link>
+            <router-link to="/login" class="dropdown-item">Login</router-link>
         </div>
       </div>
     </div>
@@ -35,25 +35,11 @@ export default defineComponent({
     };
   },
   methods: {
-    toggleDropdown() {
-      this.showDropdown = !this.showDropdown;
-    },
-    closeDropdown() {
-      this.showDropdown = false;
-    },
-    handleClickOutside(event: MouseEvent) {
-      const target = event.target as HTMLElement;
-      if (!this.$el.contains(target) && this.showDropdown) {
-        this.closeDropdown();
-      }
-    },
+    
   },
 
   mounted() {
-    document.addEventListener('click', this.handleClickOutside);
-  },
-  beforeUnmount() {
-    document.removeEventListener('click', this.handleClickOutside)
+
   },
 });
 </script>
@@ -91,9 +77,7 @@ $navbar-input-color: #FFDB7F;
 
     button {
       font-weight: 600;
-      &:focus, &:active {
-        @include reset-input;
-      }
+      border-radius: 20px;
     }
 
     .dropdown-item {

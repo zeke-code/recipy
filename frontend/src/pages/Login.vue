@@ -19,10 +19,20 @@
 </template>
 
 <script lang="ts">
+import { useHead } from '@unhead/vue';
 import axios from 'axios';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
+    setup() {
+        useHead({
+            title: 'Login | Recipy',
+            meta: [{
+                name: 'description',
+                content: 'Page where to Log In in Recipy'
+            }]
+        })
+    },
     data() {
         return {
             username: '',
