@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
-import { connection } from "../utils/database";
+import { getConnection } from "../utils/database";
 
 export async function allPosts(req: Request, res: Response) {
-    connection.execute(
+    const connection = await getConnection()
+    const [posts] = await connection.execute(
         `SELECT 
         r.recipe_id, 
         r.country, 
@@ -18,9 +19,6 @@ export async function allPosts(req: Request, res: Response) {
         LEFT JOIN favorites f ON r.recipe_id = f.recipe_id
         GROUP BY r.recipe_id
         `,
-        [],
-        function (err, results, field) {
-            res.json(results)
-        }
-    )
+        )
+        res.json(posts);
 }
