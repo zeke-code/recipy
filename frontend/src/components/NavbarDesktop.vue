@@ -1,27 +1,21 @@
 <template>
   <nav class="navbar sticky-top navbar-expand-lg align-items-center">
     <div class="container-fluid">
-      <div class="col-lg-3">
         <router-link to="/" class="navbar-brand">
           <img :src="recipyLogo" alt="Recipy Logo">
         </router-link>
-      </div>
-      <div class="col-lg-6 ms-5">
-        <form class="d-flex" role="search">
+        <form class="d-flex me-3" role="search">
           <input class="form-control" type="search" placeholder="Search recipes here" aria-label="Search">
         </form>
-      </div>
-    <div class="col-lg-2">
-      <div class="dropdown" v-bind:class=" { 'show': showDropdown }">
+      <div class="dropdown me-5" v-bind:class=" { 'show': showDropdown }">
         <button class="btn dropdown-toggle" type="button" @click="toggleDropdown" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" :aria-expanded="showDropdown">
           <img :src="userIcon" id="userIcon-svg">
           supercoolusername
         </button>
         <div class="dropdown-menu" v-bind:class=" { 'show': showDropdown }">
           <router-link to="/profile" class="dropdown-item">Profile</router-link>
-          <router-link to="/logout" class="dropdown-item">Logout</router-link>
+          <router-link to="/login" class="dropdown-item">Login</router-link>
         </div>
-      </div>
       </div>
     </div>
   </nav>

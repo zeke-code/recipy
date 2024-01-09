@@ -13,45 +13,40 @@
     </div>
   </div>
     <nav class="navbar sticky-top">
-        <div class="container-fluid">
-            <div class="col-sm-1">
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar">
-                    <div class="offcanvas-header">
-                        <h5 class="offcanvas-title">Recipy Menu</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-                    </div>
-                    <div class="offcanvas-body">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                              <router-link to="/" class="nav-link"><img :src="homeIcon">Home</router-link>
-                              <router-link to="/trending" class="nav-link"><img :src="fireIcon">Trending</router-link>
-                              <router-link to="/explore" class="nav-link"><img :src="exploreIcon">Explore</router-link>
-                              <router-link to="/favorites" class="nav-link"><img :src="favoritesIcon">My Favorites</router-link>
-                              <router-link to="/createpost" class="nav-link"><img :src="plusIcon">Create Post</router-link>
-                              <router-link to="/logout" class="nav-link"><img :src="logoutIcon">Logout</router-link>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+      <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title">Recipy Menu</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
             </div>
-            <div class="col-sm-3">
-                <router-link to="/" class="navbar-brand">
-                    <img :src="recipyLogo" alt="Recipy Logo">
-                </router-link>
-            </div>
-        
-            <div class="col-sm-3">
-                <button class="btn" id="searchIcon" data-bs-toggle="modal" data-bs-target="#searchModal">
-                    <img :src="magnifyingGlass" alt="Search">
-                </button>
-                <router-link to="/user">
-                    <img :src="userIconMobile">
-                </router-link>
-            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <router-link to="/" class="nav-link"><img :src="homeIcon">Home</router-link>
+                  <router-link to="/trending" class="nav-link"><img :src="fireIcon">Trending</router-link>
+                  <router-link to="/explore" class="nav-link"><img :src="exploreIcon">Explore</router-link>
+                  <router-link to="/favorites" class="nav-link"><img :src="favoritesIcon">My Favorites</router-link>
+                  <router-link to="/createpost" class="nav-link"><img :src="plusIcon">Create Post</router-link>
+                  <router-link to="/login" class="nav-link"><img :src="logoutIcon">Login</router-link>
+                </li>
+              </ul>
+          </div>
         </div>
+        <router-link to="/" class="navbar-brand">
+            <img :src="recipyLogo" alt="Recipy Logo">
+        </router-link>
+        <div class="d-flex align-items-center">
+          <button class="btn" id="searchIcon" data-bs-toggle="modal" data-bs-target="#searchModal">
+            <img :src="magnifyingGlass" alt="Search">
+          </button>
+          <router-link to="/user">
+            <img :src="userIconMobile">
+          </router-link>
+        </div>
+      </div>
     </nav>
 </template>
 
