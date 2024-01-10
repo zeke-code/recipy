@@ -139,3 +139,27 @@ export async function getFavoritePostsByUser(req: Request, res: Response) {
 
     res.json(posts);
 }
+
+export async function getPostById(req: Request, res: Response) {
+    const connection = await getConnection();
+    const post = await connection.execute(
+        `SELECT 
+        r.recipe_id, 
+        r.country, 
+        r.username, 
+        r.title, 
+        r.img_post,
+        COUNT(DISTINCT l.username) AS like_count,
+        COUNT(DISTINCT c.comment_id) AS comment_count,
+        COUNT(DISTINCT f.username) AS favorite_count
+        FROM recipes r
+        LEFT JOIN likes l ON r.recipe_id = l.recipe_id
+        LEFT JOIN comments c ON r.recipe_id = c.recipe_id
+        LEFT JOIN favorites f ON r.recipe_id = f.recipe_id
+        WHERE r.recipe_id = ?
+        GROUP BY r.recipe_id`,
+        [req.params.id],
+    );
+
+    res.json(post);
+}

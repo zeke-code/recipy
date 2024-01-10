@@ -41,8 +41,8 @@ export default defineComponent({
     },
 
     methods: {
-        getFavoritePosts() {
-            axios.get('/api/profile/favorites')
+        async getFavoritePosts() {
+            await axios.get('/api/profile/favorites')
                 .then(response => {
                     this.datiPost = response.data;
                 })

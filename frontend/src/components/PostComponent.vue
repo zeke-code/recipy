@@ -1,8 +1,10 @@
 <template>
     <div class="post">
+        <router-link :to="`/post/${post?.recipe_id}`" style="text-decoration: none; color: inherit;">
       <h4 class="recipe-country">{{ post?.country }} {{ post?.country ? countryFlags[post.country] : '' }}</h4>
       <h3 class="recipe-name">{{ post?.title }} by {{ post?.username }}</h3>
       <img class="post-image" :src="'/img/' + post?.img_post" alt="Recipe's picture">
+        </router-link>
       <div class="button-wrapper">
         <button type="button" class="btn btn-standard" aria-label="Like post" @click="likePost">&#x1F60B; {{ post?.like_count }}</button>
         <button type="button" class="btn btn-standard" aria-label="Comment post" ><img :src="commentIcon" alt="Comments Icon">{{ post?.comment_count }} </button>
@@ -17,7 +19,7 @@
   import { Post, CountryFlags } from '../types';
   import commentIcon from '@/assets/svg/comment_icon.svg';
   import favoriteIcon from '@/assets/svg/favorite_icon.svg';
-import axios from 'axios';
+  import axios from 'axios';
 
 
   export default defineComponent({
@@ -44,8 +46,8 @@ import axios from 'axios';
         }
     },
     methods: {
-        likePost() {
-            axios.post(`/api/post/${this.post?.recipe_id}/like`)
+        async likePost() {
+            await axios.post(`/api/post/${this.post?.recipe_id}/like`)
                 .then(response => {
                     if (response.data.success) {
                         if (this.post) {
@@ -59,8 +61,8 @@ import axios from 'axios';
                 })
         },
 
-        favoritePost() {
-            axios.post(`/api/post/${this.post?.recipe_id}/favorite`)
+        async favoritePost() {
+            await axios.post(`/api/post/${this.post?.recipe_id}/favorite`)
                 .then(response => {
                     if (response.data.success) {
                         if (this.post) {
@@ -90,6 +92,11 @@ $button-height: 40px;
     margin: 0;
     margin-top: -6px;
     margin-bottom: 12px;
+}
+
+.router-link {
+    color: $post-text-color;
+    text-decoration: none;
 }
 
 .post-image {

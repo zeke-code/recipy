@@ -43,7 +43,7 @@
           <button class="btn" id="searchIcon" data-bs-toggle="modal" data-bs-target="#searchModal">
             <img :src="magnifyingGlass" alt="Search">
           </button>
-          <router-link to="/user">
+          <router-link to="/profile">
             <img :src="userIconMobile">
           </router-link>
         </div>
