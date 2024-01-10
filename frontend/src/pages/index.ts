@@ -6,3 +6,5 @@ export { default as Profile } from './Profile.vue';
 export { default as Favorites } from './Favorites.vue';
 export { default as NotFound } from './NotFound.vue';
 export { default as ViewPost } from './ViewPost.vue';
+export { default as Search } from './Search.vue';
+export { default as PopularPosts } from './PopularPosts.vue';

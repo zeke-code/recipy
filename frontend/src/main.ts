@@ -4,11 +4,10 @@ import { createHead } from '@unhead/vue'
 import { User } from './types'
 import axios from 'axios'
 import App from './App.vue'
-import { Home, CreatePost, Login, Register, Profile, Favorites, NotFound, ViewPost } from './pages';
+import { Home, CreatePost, Login, Register, Profile, Favorites, NotFound, ViewPost, Search, PopularPosts } from './pages';
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './styles/style.scss'
-import Search from './pages/Search.vue'
 
 const router: Router = createRouter({
     history: createWebHistory(),
@@ -17,6 +16,7 @@ const router: Router = createRouter({
         { path: '/createpost', component: CreatePost, meta: { requireLogin: true }},
         { path: '/login', component: Login},
         { path: '/register', component: Register, meta: { requireLogout: true }},
+        { path: '/popular', component: PopularPosts},
         { path: '/profile', component: Profile, meta: { requireLogin: true }},
         { path: '/favorites', component: Favorites, meta: { requireLogin: true }},
         { path: '/search', name: 'SearchResults', component: Search},

@@ -5,8 +5,7 @@
     <!-- Sidebar content goes here -->
       <ul class="nav flex-column">
         <li class="nav-item"><router-link to="/" class="nav-link"><img :src="homeIcon">Home</router-link></li>
-        <li class="nav-item"><router-link to="/trending" class="nav-link"><img :src="fireIcon">Trending</router-link></li>
-        <li class="nav-item"><router-link to="/explore" class="nav-link"><img :src="exploreIcon">Explore</router-link></li>
+        <li class="nav-item"><router-link to="/popular" class="nav-link"><img :src="fireIcon">Most Popular</router-link></li>
         <li class="nav-item"><router-link to="/favorites" class="nav-link"><img :src="favoritesIcon">My Favorites</router-link></li>
         <li class="nav-item"><router-link to="/createpost" class="nav-link"><img :src="plusIcon">Create Post</router-link></li>
       </ul>
@@ -19,7 +18,6 @@
 import { defineComponent } from 'vue';
 import homeIcon from '@/assets/svg/home_icon.svg';
 import fireIcon from '@/assets/svg/fire_icon.svg';
-import exploreIcon from '@/assets/svg/explore_icon.svg';
 import favoritesIcon from '@/assets/svg/star_icon.svg';
 import plusIcon from '@/assets/svg/plus_icon.svg';
 
@@ -28,7 +26,6 @@ export default defineComponent({
         return {
           homeIcon,
           fireIcon,
-          exploreIcon,
           favoritesIcon,
           plusIcon
         }

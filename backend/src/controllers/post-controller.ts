@@ -224,3 +224,24 @@ export async function searchPosts(req: Request, res: Response) {
 
     res.json(posts);
 }
+
+export async function getPopularPosts(req: Request, res: Response) {
+    const connection = await getConnection();
+    const [popularPosts] = await connection.execute(
+        `SELECT 
+        r.recipe_id, 
+        r.country, 
+        r.username,
+        r.description, 
+        r.title, 
+        r.img_post,
+        COUNT(l.username) AS like_count
+        FROM recipes r
+        LEFT JOIN likes l ON r.recipe_id = l.recipe_id
+        GROUP BY r.recipe_id
+        ORDER BY like_count DESC
+        LIMIT 10`
+    );
+    
+    res.json(popularPosts);
+}

@@ -26,8 +26,7 @@
               <ul class="navbar-nav">
                 <li class="nav-item d-flex flex-column">
                   <button type='button' class='btn' data-bs-dismiss="offcanvas"><router-link to="/" class="nav-link"><img :src="homeIcon">Home</router-link></button>
-                  <button type='button' class='btn' data-bs-dismiss="offcanvas"><router-link to="/trending" class="nav-link"><img :src="fireIcon">Trending</router-link></button>
-                  <button type='button' class='btn' data-bs-dismiss="offcanvas"><router-link to="/explore" class="nav-link"><img :src="exploreIcon">Explore</router-link></button>
+                  <button type='button' class='btn' data-bs-dismiss="offcanvas"><router-link to="/popular" class="nav-link"><img :src="fireIcon">Most Popular</router-link></button>
                   <button type='button' class='btn' data-bs-dismiss="offcanvas"><router-link to="/favorites" class="nav-link"><img :src="favoritesIcon">My Favorites</router-link></button>
                   <button type='button' class='btn' data-bs-dismiss="offcanvas"><router-link to="/createpost" class="nav-link"><img :src="plusIcon">Create Post</router-link></button>
                   <button v-if="user" :user="user" type='button' class='btn nav-link' data-bs-dismiss="offcanvas"><img :src="logoutIcon"><a class="nav-link" @click="logout">Logout</a></button>
@@ -59,7 +58,6 @@ import magnifyingGlass from '@/assets/images/magnifying_glass.png'
 import userIconMobile from '@/assets/svg/user_icon_mobile.svg'
 import homeIcon from '@/assets/svg/home_icon.svg';
 import fireIcon from '@/assets/svg/fire_icon.svg';
-import exploreIcon from '@/assets/svg/explore_icon.svg';
 import plusIcon from '@/assets/svg/plus_icon.svg';
 import favoritesIcon from '@/assets/svg/star_icon.svg';
 import logoutIcon from '@/assets/svg/logout_icon.svg';
@@ -75,7 +73,6 @@ export default defineComponent({
             magnifyingGlass,
             userIconMobile,
             homeIcon,
-            exploreIcon,
             favoritesIcon,
             plusIcon,
             fireIcon,
