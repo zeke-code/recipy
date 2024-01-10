@@ -98,10 +98,10 @@ export default defineComponent({
 <style scoped lang="scss">
 $transparent-black: rgba(0, 0, 0, 0.267);
 $post-text-color: #492318;
-$button-stroke: #6A3323;
 $button-color: #f27c5bbb;
 $button-hover-color: #F27B5B;
-$wrapper-color: #f27c5b98;
+$post-wrapper-color: #F27B5B;
+$button-outline: #000000;
 
 .create-post-wrapper {
     border-radius: 5px;
@@ -133,14 +133,11 @@ $wrapper-color: #f27c5b98;
         }
     }
 
-    .btn {
-        outline: 2px solid $transparent-black;
-    }
-
     .btn.submit {
         border-radius: 20px;
         margin-bottom: 23px;
         background-color: $button-color;
+        outline: 1px solid $button-outline;
         &:hover {
             background-color: $button-hover-color;
         }

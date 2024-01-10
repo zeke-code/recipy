@@ -72,3 +72,45 @@ export async function postsFromLoggedUser(req: Request, res: Response) {
         [user.username])
         res.json(posts);
 }
+
+export async function likePost(req: Request, res: Response) {
+    const user = decodeAccessToken(req, res);
+    if (!user) {
+        res.status(401).send('You need to be logged in to do this operation.')
+        return;
+    }
+
+    const postId = req.params.id;
+    const connection = await getConnection();
+    const [existingLike] = await connection.execute('SELECT * FROM likes WHERE recipe_id = ? AND username = ?', [postId, user.username]);
+    if (Array.isArray(existingLike) && existingLike.length > 0) {
+        await connection.execute('DELETE FROM likes WHERE username = ? AND recipe_id = ?', [user.username, postId]);
+        res.json({ success: true, message: 'Like removed.' });
+        return;
+    }
+    await connection.execute('INSERT INTO likes (recipe_id, username) VALUES (?, ?)', [postId, user.username]);
+
+    res.json({ success: true, message: 'Like added.' })
+}
+
+export async function favoritePost(req: Request, res: Response) {
+    const user = decodeAccessToken(req, res);
+    if (!user) {
+        res.status(401).send('You need to be logged in to do this operation.')
+        return;
+    }
+
+    const postId = req.params.id;
+    const connection = await getConnection();
+
+    const [existingFavorite] = await connection.execute('SELECT * FROM favorites WHERE recipe_id = ? AND username = ?', [postId, user.username]);
+    if (Array.isArray(existingFavorite) && existingFavorite.length > 0) {
+        await connection.execute('DELETE FROM favorites WHERE username = ? AND recipe_id = ?', [user.username, postId]);
+        res.json({ success: true, message: 'Favorite removed.' });
+        return;
+    }
+
+    await connection.execute('INSERT INTO favorites (recipe_id, username) VALUES (?, ?)', [postId, user.username]);
+
+    res.json({ success: true, message: 'Favorite added.' });
+}

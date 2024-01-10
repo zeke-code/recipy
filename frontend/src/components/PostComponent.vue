@@ -4,14 +4,9 @@
       <h3 class="recipe-name">{{ post?.title }} by {{ post?.username }}</h3>
       <img class="post-image" :src="'/img/' + post?.img_post" alt="Recipe's picture">
       <div class="button-wrapper">
-        <div class="rate-button-wrapper">
-          <button type="button" class="btn btn-emoji" aria-label="Like post">&#x1F60B; {{ post?.like_count }}</button>
-          <div class="divider"></div>
-          <button type="button" class="btn btn-emoji" aria-label="Dislike post">&#x1F44E;</button>
-        </div>
-        <button type="button" class="btn btn-standard" aria-label="Comment post"><img :src="commentIcon" alt="Comments Icon">{{ post?.comment_count }} </button>
-        <button type="button" class="btn btn-standard" aria-label="Save in favorites post"><img :src="favoriteIcon" alt="Favorites Icon"> {{ post?.favorite_count }}</button>
-        <button type="button" class="btn btn-share" aria-label="Share the post"><img :src="shareIcon"></button>
+        <button type="button" class="btn btn-standard" aria-label="Like post" @click="likePost">&#x1F60B; {{ post?.like_count }}</button>
+        <button type="button" class="btn btn-standard" aria-label="Comment post" ><img :src="commentIcon" alt="Comments Icon">{{ post?.comment_count }} </button>
+        <button type="button" class="btn btn-standard" aria-label="Save in favorites post" @click="favoritePost"><img :src="favoriteIcon" alt="Favorites Icon"> {{ post?.favorite_count }}</button>
       </div>
       <div class="separator mt-4"></div>
     </div>
@@ -21,8 +16,8 @@
   import { PropType, defineComponent } from 'vue';
   import { Post, CountryFlags } from '../types';
   import commentIcon from '@/assets/svg/comment_icon.svg';
-  import favoriteIcon from '@/assets/svg/star_icon.svg';
-  import shareIcon from '@/assets/svg/share_icon.svg';
+  import favoriteIcon from '@/assets/svg/favorite_icon.svg';
+import axios from 'axios';
 
 
   export default defineComponent({
@@ -46,11 +41,38 @@
             } as CountryFlags,
             commentIcon,
             favoriteIcon,
-            shareIcon,
         }
     },
     methods: {
+        likePost() {
+            axios.post(`/api/post/${this.post?.recipe_id}/like`)
+                .then(response => {
+                    if (response.data.success) {
+                        if (this.post) {
+                            if (response.data.message === 'Like added.') {
+                                this.post.like_count++;
+                            } else if (response.data.message === 'Like removed.') {
+                                this.post.like_count--;
+                            }
+                        }
+                    }
+                })
+        },
 
+        favoritePost() {
+            axios.post(`/api/post/${this.post?.recipe_id}/favorite`)
+                .then(response => {
+                    if (response.data.success) {
+                        if (this.post) {
+                            if (response.data.message === 'Favorite added.') {
+                                this.post.favorite_count++;
+                            } else if (response.data.message === 'Favorite removed.') {
+                                this.post.favorite_count--;
+                            }
+                        }
+                    }
+                })
+        }
     }
   })
   </script>
@@ -85,70 +107,29 @@ $button-height: 40px;
 }
 
 .btn {
-    &-standard, &-emoji, &-share {
-        font-size: 17px;
+    &-standard {
+        font-size: 20px;
         cursor: pointer;
         transition: background-color 0.3s ease, border-radius 0.3s ease;
         height: $button-height;
         display: flex;
         justify-content: center;
         align-items: center;
-
-        &:hover {
-            background-color: $button-hover-color;
-        }
-    }
-
-    &-standard {
         width: fit-content;
         border-radius: 20px;
         margin-left: 30px;
         outline: solid 1px $transparent-black;
         background-color: $button-color;
-        
+
         img {
             align-self: center;
             vertical-align: middle;
             margin-right: 5px;
         }
-    }
 
-    &-emoji {
-        background-color: transparent;
-
-        &:first-child:hover {
-            border-top-left-radius: 20px;
-            border-bottom-left-radius: 20px;
+        &:hover {
+            background-color: $button-hover-color;
         }
-        &:last-child:hover {
-            border-bottom-right-radius: 20px;
-            border-top-right-radius: 20px;
-        }
-    }
-
-    &-share {
-        width: 40px;
-        margin-left: 30px;
-        border-radius: 20px;
-        background-color: $button-color;
-        outline: solid 1px $transparent-black;
-    }
-}
-
-.rate-button-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: fit-content;
-    height: fit-content;
-    border-radius: 20px;
-    background-color: $button-color;
-    outline: solid 1px $transparent-black;
-
-    .divider {
-        background-color: $transparent-black;
-        height: 40px;
-        width: 2px;
     }
 }
 
@@ -165,35 +146,17 @@ $button-height: 40px;
 }
 */
 @media (max-width: 576px) {
-
-    .rate-button-wrapper {
-        height: 30px;
-
-        .divider {
-            height: 30px;
-        }
-    }
     .btn {
-        &-standard, &-emoji, &-share {
-            font-size: 14px;
+        &-standard {
+            font-size: 16px;
             height: 30px;
             padding: 5px 10px;
-            line-height: 1;
+            margin-left: 20px;
 
             img {
-                width: 20px;
+                width: 21px;
                 height: auto;
             }
-        }
-
-        &-standard {
-            margin-left: 10px;
-        }
-
-
-        &-share {
-            width: 30px;
-            margin-left: 10px;
         }
 
     }
