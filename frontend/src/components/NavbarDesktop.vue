@@ -7,40 +7,49 @@
         <form class="d-flex me-3" role="search">
           <input class="form-control" type="search" placeholder="Search recipes here" aria-label="Search">
         </form>
-        <div class="dropdown me-5">
+        <div class="dropdown" v-if="user" :user="user">
           <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true">
             <img :src="userIcon" id="userIcon-svg">
-            supercoolusername
+            {{ user?.username }}
           </button>
           <div class="dropdown-menu">
             <router-link to="/profile" class="dropdown-item">Profile</router-link>
-            <router-link to="/login" class="dropdown-item">Login</router-link>
+            <router-link to="/logout" class="dropdown-item" @click="logout">Logout</router-link>
         </div>
-      </div>
+        </div>
+        <div v-else id="notLoggedIn">
+            <router-link to="/login" id="loginText">Login</router-link>
+        </div>
     </div>
   </nav>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { PropType, defineComponent } from 'vue';
+import axios from 'axios';
+import { User } from '../types';
 import recipyLogo from '@/assets/images/recipy_logo.png'
 import userIcon from '@/assets/svg/user_icon.svg'
 
 export default defineComponent({
-  data() {
-    return {
-      showDropdown: false,
-      recipyLogo,
-      userIcon
-    };
-  },
-  methods: {
-    
-  },
+    props: {
+      user: Object as PropType<User>
+    },
+    data() {
+        return {
+            recipyLogo,
+            userIcon
+        };
+    },
+    methods: {
+      async logout() {
+            await axios.post('/api/auth/logout')
+            window.location.reload()
+        }
+    },
+    mounted() {
 
-  mounted() {
-
-  },
+    },
 });
 </script>
 
@@ -66,33 +75,6 @@ $navbar-input-color: #FFDB7F;
     transform: translateY(2px);
   }
 
-  .dropdown {
-    border-radius: 20px;
-    border: 1px solid black;
-    width: fit-content;
-
-    .dropdown-menu {
-      background-color: $navbar-color;
-    }
-
-    button {
-      font-weight: 600;
-      border-radius: 20px;
-    }
-
-    .dropdown-item {
-      &:hover {
-        background-color: $navbar-input-color;
-        font-weight: 600;
-      }
-    }
-  }
-
-  #userIcon-svg {
-    margin-bottom: 3px;
-    margin-right: 2px;
-  }
-
   form {
     width: 280px;
     border: solid 1px black;
@@ -116,6 +98,44 @@ $navbar-input-color: #FFDB7F;
       &:focus {
         background-color: $navbar-input-color;
       } 
+    }
+  }
+
+  .dropdown {
+    border-radius: 20px;
+    border: 1px solid black;
+    width: fit-content;
+    margin-right: 5%;
+
+    .dropdown-menu {
+      background-color: $navbar-color;
+    }
+
+    button {
+      font-weight: 600;
+      border-radius: 20px;
+    }
+
+    .dropdown-item {
+      &:hover {
+        background-color: $navbar-input-color;
+        font-weight: 600;
+      }
+    }
+  }
+
+  #userIcon-svg {
+    margin-bottom: 3px;
+    margin-right: 2px;
+  }
+
+  #notLoggedIn {
+    margin-right: 8%;
+
+    #loginText {
+        color: black;
+        text-decoration: none;
+        font-size: 21px;
     }
   }
 }

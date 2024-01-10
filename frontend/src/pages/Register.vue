@@ -2,18 +2,20 @@
     <div class="col-sm-12 col-md-12 col-lg-10 offset-lg-2">
         <div class="d-flex pt-5 flex-column justify-content-center align-items-center">
             <form @submit.prevent="onSubmit">
-                <h1>Login On Recipy</h1>
+                <h1>Register On Recipy!</h1>
                 <div class="mb-3">
                   <label for="usernameForm" class="form-label">Username</label>
                   <input type="text" v-model="username" class="form-control" id="usernameForm" placeholder="Username" aria-describedby="usernameHelp">
                   <div id="usernameHelp" class="form-text">Your username will be visible to everyone on Recipy.</div>
                 </div>
                 <div class="mb-3">
-                  <label for="password" class="form-label">Password</label>
+                  <label for="passwordForm" class="form-label">Password</label>
                   <input type="password" v-model="password" class="form-control" placeholder="Password" id="passwordForm">
-                  <div id="passwordHelp" class="form-text">You don't have an account? <router-link to="/register">Click here to sign up</router-link></div>
+                  <label for="passwordConfirmation" class="form-label">Password Confirmation</label>
+                  <input type="password" v-model="confirmPassword" class="form-control" placeholder="Password Confirmation" id="passwordFormConfirmation">
+                  <div id="passwordHelp" class="form-text">Make sure it's secure and not something like your date of birth.</div>
                 </div>
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="submit" class="btn btn-danger">Register</button>
             </form>
         </div>
     </div>
@@ -27,10 +29,10 @@ import { defineComponent } from 'vue';
 export default defineComponent({
     setup() {
         useHead({
-            title: 'Login | Recipy',
+            title: 'Sign Up | Recipy',
             meta: [{
                 name: 'description',
-                content: 'Page where to Log In in Recipy'
+                content: 'Page where to sign up in Recipy'
             }]
         })
     },
@@ -38,12 +40,17 @@ export default defineComponent({
         return {
             username: '',
             password: '',
+            confirmPassword: '',
         }
     },
     methods: {
         async onSubmit() {
+            if (this.password != this.confirmPassword) {
+                alert('The two passwords are not equal.')
+                return
+            }
             try {
-                await axios.post('/api/auth/login', {
+                await axios.post('/api/auth/register', {
                     username: this.username,
                     password: this.password,
                 })

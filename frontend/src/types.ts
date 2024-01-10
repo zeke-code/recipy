@@ -27,5 +27,5 @@ export interface Post {
 
 export interface User {
     username: string,
-    hashPassword: string
+    hash_password: string
 }

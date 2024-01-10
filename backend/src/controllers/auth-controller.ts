@@ -3,16 +3,18 @@ import bcrypt from 'bcrypt';
 import { decodeAccessToken, deleteAccessToken, setAccessToken } from '../utils/auth';
 import { getConnection } from '../utils/database';
 
-export const checkLoggedIn = (req: Request, res: Response) => {
+export const checkLoggedIn = async (req: Request, res: Response) => {
     const user = decodeAccessToken(req, res);
     if (user) {
         res.status(403).send('This operation requires logout!');
-        return;
+        return true;
     }
+    return false;
 }
 
 export const register = async (req: Request, res: Response) => {
-    checkLoggedIn(req, res);
+    const isLoggedIn = await checkLoggedIn(req, res);
+    if (isLoggedIn) return;
 
     const { username, password } = req.body
     const connection = await getConnection()
@@ -27,7 +29,7 @@ export const register = async (req: Request, res: Response) => {
 
     const passwordHash = await bcrypt.hash(password, 10);
 
-    await connection.execute("INSERT INTO users (username, hashPassword) VALUES (?, ?)", [
+    await connection.execute("INSERT INTO users (username, hash_password) VALUES (?, ?)", [
         username,
         passwordHash
     ])
@@ -44,7 +46,8 @@ export const register = async (req: Request, res: Response) => {
 }
 
 export const login = async (req: Request, res: Response) => {
-    checkLoggedIn(req, res)
+    const isLoggedIn = await checkLoggedIn(req, res);
+    if (isLoggedIn) return;
 
     const { username, password } = req.body
 
@@ -60,14 +63,14 @@ export const login = async (req: Request, res: Response) => {
     }
 
     const userData = results[0] as any
-    const passwordConfirmation = await bcrypt.compare(password, userData.password)
+    const passwordConfirmation = await bcrypt.compare(password, userData.hash_password)
 
     if(!passwordConfirmation) {
         res.status(400).send('Wrong credentials.')
         return
     }
 
-    delete userData.password
+    delete userData.hash_password
 
     setAccessToken(req, res, userData)
 
@@ -75,7 +78,11 @@ export const login = async (req: Request, res: Response) => {
 }
 
 export const logout = async(req: Request, res: Response) => {
-    checkLoggedIn(req, res)
+    const user = decodeAccessToken(req, res)
+    if (!user) {
+        res.status(403).send('This operation requires logout.')
+        return
+    }
     deleteAccessToken(req, res)
     res.json({ message: 'Logout was successful!' })
 }

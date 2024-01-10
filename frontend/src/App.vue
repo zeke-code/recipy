@@ -21,20 +21,21 @@ export default defineComponent({
       this.user = res.data
       },
     },
-    mounted() {
-      this.getUser()
+
+  mounted() {
+    this.getUser()
     }
   }
 )
 </script>
 
 <template>
-  <NavbarDesktop />
+  <NavbarDesktop :user="user" />
   <NavbarMobile />
   <div class="container-fluid">
     <div class="row">
     <SidebarDesktop />
-    <RouterView />
+    <RouterView :user="user" />
     </div>
   </div>
 </template>

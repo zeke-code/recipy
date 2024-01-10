@@ -117,7 +117,7 @@ $button-height: 40px;
         max-width: 100%;
         width: 620px;
         height: auto;
-        box-shadow: 2px 2px 5px $transparent-black;
+        box-shadow: -3px 6px 5px $transparent-black;
         border-radius: 15px;
     }
 
