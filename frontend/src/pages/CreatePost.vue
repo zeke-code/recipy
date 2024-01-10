@@ -1,7 +1,7 @@
 <template>
     <div class="col-sm-12 col-md-12 col-lg-10 offset-lg-2 d-flex justify-content-center">
         <div class="create-post-wrapper mt-5 mb-5">
-            <form @submit.prevent="submitForm" class="form-centered mt-3">
+            <form @submit.prevent="onSubmit" class="form-centered mt-3">
                 <h3>Create a post</h3>
                 <div class="mb-3">
                     <label for="title" class="visually-hidden">Title</label>
@@ -15,7 +15,7 @@
                         <option v-for="country in countries" :key="country" :value="country"> {{ country }}</option>
                     </select>
                     <label class="visually-hidden" for="fileInput">Upload your picture here</label>
-                    <input type="file" class="form-control" id="fileInput" accept="image/*" @change="handleImageUpload" />
+                    <input type="file" @change="handleImageUpload" class="form-control" id="fileInput" accept="image/*" />
                 </div>
 
                 <div class="mb-3">
@@ -23,15 +23,20 @@
                     <textarea class="form-control form-control-lg" id="instructions" v-model="form.instructions" rows="5" placeholder="Put your recipe's instructions here..." required></textarea>
                 </div>
 
-                <button type="submit" class="btn submit">Submit Recipe</button>
+                <button type="submit" class="btn submit">Create Post</button>
+                <div v-if="submitSuccess" class="alert alert-success" role="alert">
+                    Your post was uploaded successfully!
+                </div>
             </form>
         </div>
     </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { PropType, defineComponent } from 'vue';
 import { useHead } from '@unhead/vue';
+import axios from 'axios';
+import { User } from '../types';
 
 export default defineComponent({
     // Composition API used to define metadata as it is simple, and I'm lazy.
@@ -44,7 +49,10 @@ export default defineComponent({
             }]
         })
     },
-
+    props: {
+        user: Object as PropType<User>
+    },
+    emits: ['submit'],
     data() {
         return {
             form: {
@@ -53,13 +61,27 @@ export default defineComponent({
                 image: null as File | null,
                 instructions: '',
             },
-            countries: ['Italy', 'France', 'Japan', 'China', 'India', 'Mexico', 'Spain', 'Thailand', 'Greece', 'Turkey'],
+            countries: ['Italy 🇮🇹', 'France 🇫🇷', 'Japan 🇯🇵', 'China 🇨🇳', 'India 🇮🇳', 'Mexico 🇲🇽', 'Spain 🇪🇸', 'Thailand 🇹🇭', 'Greece 🇬🇷', 'Turkey 🇹🇷'],
+            submitSuccess: false,
         }
     },
 
     methods: {
-        submitForm() {
-
+        async onSubmit() {
+            const response = await axios.post('/api/post/createpost', {
+                // All these informations should be sanitized, but we'll keep it simple here.
+                country: this.form.country,
+                title: this.form.title,
+                description: this.form.instructions,
+                img_post: this.form.image ? `${this.user?.username}_${this.form.image.name}` : null
+            });
+            if (response.data.success) {
+                this.submitSuccess = true;
+            }
+            this.form.title = '',
+            this.form.country = '',
+            this.form.instructions = ''
+            this.$emit('submit');
         },
         handleImageUpload(event: Event) {
             const file = (event.target as HTMLInputElement).files?.[0];

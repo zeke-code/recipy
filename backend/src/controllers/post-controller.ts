@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { getConnection } from "../utils/database";
+import { decodeAccessToken } from "../utils/auth";
 
 export async function allPosts(req: Request, res: Response) {
     const connection = await getConnection()
@@ -21,4 +22,22 @@ export async function allPosts(req: Request, res: Response) {
         `,
         )
         res.json(posts);
+}
+
+export async function createPost(req: Request, res: Response) {
+    const user = decodeAccessToken(req, res);
+    if(!user) {
+        res.status(401).send('You need to be logged in to do this operation.')
+        return
+    }
+
+    const conn = await getConnection()
+    await conn.execute('INSERT INTO recipes ( username, country, title, description, img_post) VALUES (?, ?, ?, ?, ?)', [
+        user.username,
+        req.body.country,
+        req.body.title,
+        req.body.description,
+        req.body.img_post
+    ])
+    res.json({ success: true })
 }

@@ -24,13 +24,13 @@
             </div>
             <div class="offcanvas-body">
               <ul class="navbar-nav">
-                <li class="nav-item">
-                  <router-link to="/" class="nav-link"><img :src="homeIcon">Home</router-link>
-                  <router-link to="/trending" class="nav-link"><img :src="fireIcon">Trending</router-link>
-                  <router-link to="/explore" class="nav-link"><img :src="exploreIcon">Explore</router-link>
-                  <router-link to="/favorites" class="nav-link"><img :src="favoritesIcon">My Favorites</router-link>
-                  <router-link to="/createpost" class="nav-link"><img :src="plusIcon">Create Post</router-link>
-                  <router-link to="/login" class="nav-link"><img :src="logoutIcon">Login</router-link>
+                <li class="nav-item d-flex flex-column">
+                  <button type='button' class='btn' data-bs-dismiss="offcanvas"><router-link to="/" class="nav-link"><img :src="homeIcon">Home</router-link></button>
+                  <button type='button' class='btn' data-bs-dismiss="offcanvas"><router-link to="/trending" class="nav-link"><img :src="fireIcon">Trending</router-link></button>
+                  <button type='button' class='btn' data-bs-dismiss="offcanvas"><router-link to="/explore" class="nav-link"><img :src="exploreIcon">Explore</router-link></button>
+                  <button type='button' class='btn' data-bs-dismiss="offcanvas"><router-link to="/favorites" class="nav-link"><img :src="favoritesIcon">My Favorites</router-link></button>
+                  <button type='button' class='btn' data-bs-dismiss="offcanvas"><router-link to="/createpost" class="nav-link"><img :src="plusIcon">Create Post</router-link></button>
+                  <button type='button' class='btn' data-bs-dismiss="offcanvas"><router-link to="/login" class="nav-link"><img :src="logoutIcon">Login</router-link></button>
                 </li>
               </ul>
           </div>
