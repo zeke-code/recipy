@@ -49,7 +49,7 @@ export async function createPost(req: Request, res: Response) {
     res.json({ success: true })
 }
 
-export async function postsFromLoggedUser(req: Request, res: Response) {
+export async function getPostsFromLoggedUser(req: Request, res: Response) {
     const user = decodeAccessToken(req, res);
     if(!user) {
         res.status(401).send('You need to be logged in to do this operation.')
@@ -66,8 +66,8 @@ export async function postsFromLoggedUser(req: Request, res: Response) {
         LEFT JOIN likes l ON r.recipe_id = l.recipe_id
         LEFT JOIN comments c ON r.recipe_id = c.recipe_id
         LEFT JOIN favorites f ON r.recipe_id = f.recipe_id
-        JOIN users AS u ON r.username = u.username
-        WHERE u.username = ?;
+        WHERE r.username = ?
+        GROUP BY r.recipe_id;
         `,
         [user.username])
         res.json(posts);
@@ -113,4 +113,29 @@ export async function favoritePost(req: Request, res: Response) {
     await connection.execute('INSERT INTO favorites (recipe_id, username) VALUES (?, ?)', [postId, user.username]);
 
     res.json({ success: true, message: 'Favorite added.' });
+}
+
+export async function getFavoritePostsByUser(req: Request, res: Response) {
+    const user = decodeAccessToken(req, res);
+    if (!user) {
+        res.status(401).send('You need to be logged in to do this operation.')
+        return;
+    }
+
+    const connection = await getConnection();
+    const [posts] = await connection.execute(
+        `SELECT r.recipe_id, r.country, r.username, r.title, r.description, r.img_post,
+        COUNT(DISTINCT l.username) AS like_count,
+        COUNT(DISTINCT c.comment_id) AS comment_count,
+        COUNT(DISTINCT f.username) AS favorite_count
+        FROM recipes AS r
+        LEFT JOIN likes l ON r.recipe_id = l.recipe_id
+        LEFT JOIN comments c ON r.recipe_id = c.recipe_id
+        LEFT JOIN favorites f ON r.recipe_id = f.recipe_id
+        WHERE f.username = ?
+        GROUP BY r.recipe_id;`,
+        [user.username]
+    );
+
+    res.json(posts);
 }

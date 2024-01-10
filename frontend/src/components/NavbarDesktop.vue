@@ -4,8 +4,8 @@
         <router-link to="/" class="navbar-brand">
           <img :src="recipyLogo" alt="Recipy Logo">
         </router-link>
-        <form class="d-flex me-3" role="search">
-          <input class="form-control" type="search" placeholder="Search recipes here" aria-label="Search">
+        <form @submit.prevent="performSearch" class="d-flex me-3" role="search">
+          <input v-model="searchQuery" class="form-control" type="search" placeholder="Search recipes here" aria-label="Search recipes here">
         </form>
         <div class="dropdown" v-if="user" :user="user">
           <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true">
@@ -38,14 +38,18 @@ export default defineComponent({
     data() {
         return {
             recipyLogo,
-            userIcon
+            userIcon,
+            searchQuery: '',
         };
     },
     methods: {
       async logout() {
             await axios.post('/api/auth/logout')
             window.location.reload()
-        }
+        },
+      async performSearch() {
+        await axios.get('/api/post/search')
+      }
     },
     mounted() {
 
