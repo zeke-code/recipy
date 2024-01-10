@@ -48,3 +48,21 @@ export async function createPost(req: Request, res: Response) {
     ])
     res.json({ success: true })
 }
+
+export async function postsFromLoggedUser(req: Request, res: Response) {
+    const user = decodeAccessToken(req, res);
+    if(!user) {
+        res.status(401).send('You need to be logged in to do this operation.')
+        return
+    }
+
+    const connection = await getConnection()
+    const [posts] = await connection.execute(
+        `SELECT r.recipe_id, r.country, r.title, r.description, r.img_post
+        FROM recipes AS r
+        JOIN users AS u ON r.username = u.username
+        WHERE u.username = ?;
+        `,
+        [user.username])
+        res.json(posts);
+}

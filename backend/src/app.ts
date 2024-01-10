@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import history from 'connect-history-api-fallback';
 import postRouter from './routes/post-router'
 import authRouter from './routes/auth-router'
+import profileRouter from './routes/profile-router'
 
 const app: Express = express();
 const port: number = 3000;
@@ -12,6 +13,7 @@ app.use(bodyParser.json())
 app.use(cookieParser())
 
 app.use(authRouter)
+app.use(profileRouter)
 app.use(postRouter);
 
 app.use(history())
