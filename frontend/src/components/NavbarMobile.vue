@@ -30,7 +30,8 @@
                   <button type='button' class='btn' data-bs-dismiss="offcanvas"><router-link to="/explore" class="nav-link"><img :src="exploreIcon">Explore</router-link></button>
                   <button type='button' class='btn' data-bs-dismiss="offcanvas"><router-link to="/favorites" class="nav-link"><img :src="favoritesIcon">My Favorites</router-link></button>
                   <button type='button' class='btn' data-bs-dismiss="offcanvas"><router-link to="/createpost" class="nav-link"><img :src="plusIcon">Create Post</router-link></button>
-                  <button type='button' class='btn' data-bs-dismiss="offcanvas"><router-link to="/login" class="nav-link"><img :src="logoutIcon">Login</router-link></button>
+                  <button v-if="user" :user="user" type='button' class='btn nav-link' data-bs-dismiss="offcanvas"><img :src="logoutIcon"><a class="nav-link" @click="logout">Logout</a></button>
+                  <button v-else type='button' class='btn' data-bs-dismiss="offcanvas"><router-link to="/login" class="nav-link"><img :src="logoutIcon">Login</router-link></button>
                 </li>
               </ul>
           </div>
@@ -51,7 +52,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { PropType, defineComponent } from 'vue';
+import axios from 'axios';
 import recipyLogo from '@/assets/images/recipy_logo.png';
 import magnifyingGlass from '@/assets/images/magnifying_glass.png'
 import userIconMobile from '@/assets/svg/user_icon_mobile.svg'
@@ -61,8 +63,12 @@ import exploreIcon from '@/assets/svg/explore_icon.svg';
 import plusIcon from '@/assets/svg/plus_icon.svg';
 import favoritesIcon from '@/assets/svg/star_icon.svg';
 import logoutIcon from '@/assets/svg/logout_icon.svg';
+import { User } from '../types';
 
 export default defineComponent({
+  props: {
+    user: Object as PropType<User | null>
+  },
     data() {
         return {
             recipyLogo,
@@ -77,7 +83,10 @@ export default defineComponent({
         }
     },
     methods: {
-        
+      async logout() {
+          await axios.post('/api/auth/logout')
+          window.location.reload()
+        }
     },
     mounted() {
 

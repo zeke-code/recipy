@@ -31,7 +31,7 @@ export default defineComponent({
 
 <template>
   <NavbarDesktop :user="user" />
-  <NavbarMobile />
+  <NavbarMobile :user="user" />
   <div class="container-fluid">
     <div class="row">
     <SidebarDesktop />

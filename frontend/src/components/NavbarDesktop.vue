@@ -33,7 +33,7 @@ import userIcon from '@/assets/svg/user_icon.svg'
 
 export default defineComponent({
     props: {
-      user: Object as PropType<User>
+      user: Object as PropType<User | null>
     },
     data() {
         return {
