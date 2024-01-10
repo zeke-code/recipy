@@ -8,6 +8,7 @@ import { Home, CreatePost, Login, Register, Profile, Favorites, NotFound, ViewPo
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './styles/style.scss'
+import Search from './pages/Search.vue'
 
 const router: Router = createRouter({
     history: createWebHistory(),
@@ -18,6 +19,7 @@ const router: Router = createRouter({
         { path: '/register', component: Register, meta: { requireLogout: true }},
         { path: '/profile', component: Profile, meta: { requireLogin: true }},
         { path: '/favorites', component: Favorites, meta: { requireLogin: true }},
+        { path: '/search', name: 'SearchResults', component: Search},
         { path: '/post/:recipe_id', component: ViewPost, meta: { requireLogin: true} },
         { path: '/:pathMatch(.*)*', component: NotFound},
     ]

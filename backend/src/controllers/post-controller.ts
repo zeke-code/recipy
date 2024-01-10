@@ -198,3 +198,29 @@ export async function sendComment(req: Request, res: Response) {
 
     res.json({ success: true, message: 'Comment posted.'})
 }
+
+export async function searchPosts(req: Request, res: Response) {
+    const searchTerm = req.query.term as string;
+    const connection = await getConnection();
+    const posts = await connection.execute(
+        `SELECT 
+        r.recipe_id, 
+        r.country, 
+        r.username,
+        r.description, 
+        r.title, 
+        r.img_post,
+        COUNT(DISTINCT l.username) AS like_count,
+        COUNT(DISTINCT c.comment_id) AS comment_count,
+        COUNT(DISTINCT f.username) AS favorite_count
+        FROM recipes r
+        LEFT JOIN likes l ON r.recipe_id = l.recipe_id
+        LEFT JOIN comments c ON r.recipe_id = c.recipe_id
+        LEFT JOIN favorites f ON r.recipe_id = f.recipe_id
+        WHERE r.title LIKE ?
+        GROUP BY r.recipe_id`,
+        [`%${searchTerm}%`],
+    );
+
+    res.json(posts);
+}
