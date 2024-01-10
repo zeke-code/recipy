@@ -29,3 +29,10 @@ export interface User {
     username: string,
     hash_password: string
 }
+
+export interface Comment {
+    comment_id: number;
+    recipe_id: number;
+    username: string;
+    comment_text: string;
+}

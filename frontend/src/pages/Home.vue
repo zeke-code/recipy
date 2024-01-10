@@ -1,9 +1,7 @@
 <template>
-    <div class="col-sm-12 col-md-12 col-lg-10 offset-lg-2">
-        <div class="d-flex flex-column justify-content-center align-items-center">
-            <div v-for="post in datiPost" class="post-wrapper d-flex justify-content-center mt-4" style="cursor: pointer;">
-                <PostComponent :post="post" />
-            </div>
+    <div class="col-sm-12 col-md-10 col-lg-7 offset-lg-5 offset-md-2">
+        <div v-for="post in datiPost" class="post-wrapper d-flex justify-content-center align-items-center mt-4" style="cursor: pointer;">
+            <PostComponent :post="post" />
         </div>
     </div>
 </template>
@@ -59,9 +57,7 @@ $post-text-color: #492318;
 .post-wrapper {
     padding: 10px;
     max-width: 641px;
-    height: fit-content;
-    flex-direction: column;
-    align-items: center;
+    word-wrap: break-word;
     color: $post-text-color;
 }
 </style>

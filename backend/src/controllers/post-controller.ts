@@ -146,7 +146,8 @@ export async function getPostById(req: Request, res: Response) {
         `SELECT 
         r.recipe_id, 
         r.country, 
-        r.username, 
+        r.username,
+        r.description, 
         r.title, 
         r.img_post,
         COUNT(DISTINCT l.username) AS like_count,
@@ -162,4 +163,38 @@ export async function getPostById(req: Request, res: Response) {
     );
 
     res.json(post);
+}
+
+export async function getPostComments(req: Request, res: Response) {
+    const connection = await getConnection();
+    const [comments] = await connection.execute(
+        `SELECT 
+        c.comment_id,
+        c.username,
+        c.comment_text
+        FROM comments c
+        WHERE c.recipe_id = ?`,
+        [req.params.id],
+    );
+
+    res.json(comments);
+}
+
+export async function sendComment(req: Request, res: Response) {
+    const user = decodeAccessToken(req, res);
+    if (!user) {
+        res.status(401).send('You need to be logged in to do this operation.')
+        return;
+    }
+
+    const commentText = req.body.comment_text;
+    const postId = req.body.recipe_id;
+
+    const connection = await getConnection();
+    const [result] = await connection.execute(
+        `INSERT INTO comments (username, comment_text, recipe_id) VALUES (?, ?, ?)`,
+        [user.username, commentText, postId]
+    );
+
+    res.json({ success: true, message: 'Comment posted.'})
 }

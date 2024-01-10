@@ -5,7 +5,7 @@
                 <h3>Create a post</h3>
                 <div class="mb-3">
                     <label for="title" class="visually-hidden">Title</label>
-                    <input type="text" class="form-control" id="title" placeholder="Your recipe's title!" v-model="form.title" required />
+                    <input type="text" class="form-control" id="title" placeholder="Your recipe's title!" v-model="form.title" maxlength="50" required />
                 </div>
 
                 <div class="d-flex mb-3">

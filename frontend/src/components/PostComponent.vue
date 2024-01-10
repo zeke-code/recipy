@@ -7,7 +7,11 @@
         </router-link>
       <div class="button-wrapper">
         <button type="button" class="btn btn-standard" aria-label="Like post" @click="likePost">&#x1F60B; {{ post?.like_count }}</button>
-        <button type="button" class="btn btn-standard" aria-label="Comment post" ><img :src="commentIcon" alt="Comments Icon">{{ post?.comment_count }} </button>
+        <router-link :to="`/post/${post?.recipe_id}`" style="text-decoration: none; color: inherit">
+            <button type="button" class="btn btn-standard" aria-label="Comment post">
+            <img :src="commentIcon" alt="Comments Icon">{{ post?.comment_count }}
+        </button>
+        </router-link>
         <button type="button" class="btn btn-standard" aria-label="Save in favorites post" @click="favoritePost"><img :src="favoriteIcon" alt="Favorites Icon"> {{ post?.favorite_count }}</button>
       </div>
       <div class="separator mt-4"></div>
@@ -92,11 +96,6 @@ $button-height: 40px;
     margin: 0;
     margin-top: -6px;
     margin-bottom: 12px;
-}
-
-.router-link {
-    color: $post-text-color;
-    text-decoration: none;
 }
 
 .post-image {
