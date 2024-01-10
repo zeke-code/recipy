@@ -9,6 +9,7 @@ import CreatePost from './pages/CreatePost.vue'
 import NotFound from './pages/NotFound.vue'
 import Login from './pages/Login.vue'
 import Register from './pages/Register.vue'
+import Profile from './pages/Profile.vue'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './styles/style.scss'
@@ -20,6 +21,7 @@ const router: Router = createRouter({
         { path: '/createpost', component: CreatePost, meta: { requireLogin: true }},
         { path: '/login', component: Login},
         { path: '/register', component: Register, meta: { requireLogout: true }},
+        { path: '/profile', component: Profile, meta: { requireLogin: true }},
         { path: '/:pathMatch(.*)*', component: NotFound},
     ]
 })
