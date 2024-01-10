@@ -31,13 +31,20 @@ export async function createPost(req: Request, res: Response) {
         return
     }
 
+    const  { country, title, description } = req.body;
+
+    let imgPostPath: string = '';
+    if (req.file) {
+        imgPostPath = req.file.filename;
+    }
+
     const conn = await getConnection()
     await conn.execute('INSERT INTO recipes ( username, country, title, description, img_post) VALUES (?, ?, ?, ?, ?)', [
         user.username,
-        req.body.country,
-        req.body.title,
-        req.body.description,
-        req.body.img_post
+        country,
+        title,
+        description,
+        imgPostPath
     ])
     res.json({ success: true })
 }

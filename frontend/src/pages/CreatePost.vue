@@ -1,7 +1,7 @@
 <template>
     <div class="col-sm-12 col-md-12 col-lg-10 offset-lg-2 d-flex justify-content-center">
         <div class="create-post-wrapper mt-5 mb-5">
-            <form @submit.prevent="onSubmit" class="form-centered mt-3">
+            <form @submit.prevent="onSubmit" enctype="multipart/form-data" class="form-centered mt-3">
                 <h3>Create a post</h3>
                 <div class="mb-3">
                     <label for="title" class="visually-hidden">Title</label>
@@ -33,10 +33,9 @@
 </template>
 
 <script lang="ts">
-import { PropType, defineComponent } from 'vue';
+import { defineComponent } from 'vue';
 import { useHead } from '@unhead/vue';
 import axios from 'axios';
-import { User } from '../types';
 
 export default defineComponent({
     // Composition API used to define metadata as it is simple, and I'm lazy.
@@ -48,9 +47,6 @@ export default defineComponent({
                 content: 'Create a post to share on Recipy.'
             }]
         })
-    },
-    props: {
-        user: Object as PropType<User>
     },
     emits: ['submit'],
     data() {
@@ -68,20 +64,26 @@ export default defineComponent({
 
     methods: {
         async onSubmit() {
-            const response = await axios.post('/api/post/createpost', {
-                // All these informations should be sanitized, but we'll keep it simple here.
-                country: this.form.country,
-                title: this.form.title,
-                description: this.form.instructions,
-                img_post: this.form.image ? `${this.user?.username}_${this.form.image.name}` : null
+            const formData = new FormData();
+            // All these informations should be sanitized, but we'll keep it simple here.
+            formData.append('country', this.form.country);
+            formData.append('title', this.form.title);
+            formData.append('description', this.form.instructions);
+            if (this.form.image) {
+                formData.append('img_post', this.form.image, this.form.image.name);
+            }
+            const response = await axios.post('api/post/createpost', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
             });
             if (response.data.success) {
                 this.submitSuccess = true;
+                this.form.title = '',
+                this.form.country = '',
+                this.form.instructions = ''
+                this.$emit('submit');
             }
-            this.form.title = '',
-            this.form.country = '',
-            this.form.instructions = ''
-            this.$emit('submit');
         },
         handleImageUpload(event: Event) {
             const file = (event.target as HTMLInputElement).files?.[0];
