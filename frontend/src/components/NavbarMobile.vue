@@ -29,7 +29,7 @@
                   <button type='button' class='btn' data-bs-dismiss="offcanvas"><router-link to="/popular" class="nav-link"><img :src="fireIcon">Most Popular</router-link></button>
                   <button type='button' class='btn' data-bs-dismiss="offcanvas"><router-link to="/favorites" class="nav-link"><img :src="favoritesIcon">My Favorites</router-link></button>
                   <button type='button' class='btn' data-bs-dismiss="offcanvas"><router-link to="/createpost" class="nav-link"><img :src="plusIcon">Create Post</router-link></button>
-                  <button v-if="user" :user="user" type='button' class='btn nav-link' data-bs-dismiss="offcanvas"><img :src="logoutIcon"><a class="nav-link" @click="logout">Logout</a></button>
+                  <button v-if="user" :user="user" type='button' class='btn nav-link' data-bs-dismiss="offcanvas"><a class="nav-link" @click="logout"><img :src="logoutIcon">Logout</a></button>
                   <button v-else type='button' class='btn' data-bs-dismiss="offcanvas"><router-link to="/login" class="nav-link"><img :src="logoutIcon">Login</router-link></button>
                 </li>
               </ul>
