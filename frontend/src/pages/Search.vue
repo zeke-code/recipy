@@ -43,6 +43,18 @@ export default defineComponent({
 
     mounted() {
         this.getSearchPosts();
+    },
+    /* Here we are watching every update of the search term, in order to update the page
+    everytime the user searchs for a new recipe in the form */
+    watch: {
+        '$route.query.term': {
+            handler(newVal, oldVal) {
+                if (newVal !== oldVal) {
+                    this.getSearchPosts();
+                }
+            },
+            immediate: true
+        }
     }
 })
 </script>

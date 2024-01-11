@@ -240,7 +240,7 @@ export async function getPopularPosts(req: Request, res: Response) {
         LEFT JOIN likes l ON r.recipe_id = l.recipe_id
         GROUP BY r.recipe_id
         ORDER BY like_count DESC
-        LIMIT 10`
+        `
     );
     
     res.json(popularPosts);

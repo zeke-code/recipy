@@ -18,7 +18,7 @@
         </div>
         </div>
         <div v-else id="notLoggedIn">
-            <router-link to="/login" id="loginText">Login</router-link>
+          <router-link to="/login" id="loginText">Login</router-link>
         </div>
     </div>
   </nav>
@@ -47,9 +47,9 @@ export default defineComponent({
             await axios.post('/api/auth/logout')
             window.location.reload()
         },
-        async submitSearch() {
-        this.$router.push({ path: '/search', query: { term: this.searchTerm } });
-        this.searchTerm = ''
+      async submitSearch() {
+      this.$router.push({ path: '/search', query: { term: this.searchTerm } });
+      this.searchTerm = ''
       },
     },
     mounted() {

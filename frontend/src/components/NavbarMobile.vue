@@ -3,11 +3,11 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-body">
-          <input type="search" class="form-control" placeholder="Search your recipe here...">
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" id="closeModalButton" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" id="searchModalButton">Search</button>
+          <form @submit.prevent="submitSearch" role="search">
+            <input type="search" v-model="searchTerm" class="form-control" placeholder="Search your recipe here...">
+              <button type="button" class="btn btn-danger mt-3" id="closeModalButton" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary mt-3 ms-3" id="searchModalButton" data-bs-dismiss="modal">Search</button>
+          </form>
         </div>
       </div>
     </div>
@@ -76,14 +76,20 @@ export default defineComponent({
             favoritesIcon,
             plusIcon,
             fireIcon,
-            logoutIcon
+            logoutIcon,
+            searchTerm : '',
         }
     },
     methods: {
       async logout() {
           await axios.post('/api/auth/logout')
           window.location.reload()
-        }
+        },
+      
+      async submitSearch() {
+      this.$router.push({ path: '/search', query: { term: this.searchTerm } });
+      this.searchTerm = ''
+      }
     },
     mounted() {
 

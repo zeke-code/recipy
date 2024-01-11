@@ -1,6 +1,5 @@
 <template>
 <div class="col-sm-12 col-md-10 col-lg-7 offset-lg-5 offset-md-2">
-    <h1 class="fw-semibold">5 Most Popular Recipes On Recipy</h1>
         <div v-for="post in datiPost" class="post-wrapper d-flex justify-content-center align-items-center mt-4" style="cursor: pointer;">
             <PostComponent :post="post" />
         </div>
