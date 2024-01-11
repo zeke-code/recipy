@@ -62,12 +62,15 @@ L'utente su Recipy può:
 - [x]  Cercare una ricetta per nome.
 - [x]  Visualizzare i post più popolari.
 
-## Sfide E Difficoltà Superate
+## Sfide E Difficoltà
 
 - Una sfida era quella di avere una navbar che cambiasse radicalmente in base al dispositivo che visualizza il sito. Per questo ho creato 3 componenti differenti che vengono visualizzati in base alla dimensione della viewport.
 
 - La sfida maggiore è stata rappresentata dalla scelta di salvare immagini sul filesystem. I form standard HTML non sono sufficienti per inviare immagini. Per ovviare al problema, ho inizialmente pensato di utilizzare un cloud storage, ma poi ho abbandonato l'idea perché costoso e inutile per un'applicazione così piccola (inoltre mi sembrava una soluzione che non mi desse modo di espandere il backend). Così ho deciso di trasformare il form della sezione "Crea Post" in un **multipart form**, in modo da poter allegare un'immagine con esso. Il parsing del form è effettuato da [Multer](https://github.com/expressjs/multer), middleware che permette di effettuare il parsing di questo form e di scrivere nel filesystem. In questo modo, tutte le immagini vengono salvate nel filesystem del server. Il database contiene solo il nome dell'immagine che è stata caricata, e Multer salva l'immagine nella cartella per i file statici. Al momento dal lato della sicurezza questo form lascia un po' a desiderare, ma essendo da solo per mancanza di tempo non sono riuscito ad inserire dei controlli riguardo al tipo di file caricato (solamente client-side, facilmente raggirabile).
 ## Setup e Deployment
+
+Installare XAMPP ed avviare Apache e MySQL.
+Creare il database col nome **recipy** ed utilizzare i file .sql nella cartella db per eseguire le query per creare le tabelle da phpmyadmin.
 
 Navigare nella cartella del frontend dal terminale e digitare:
 ```
