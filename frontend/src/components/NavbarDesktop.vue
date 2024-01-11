@@ -145,7 +145,7 @@ $navbar-input-color: #FFDB7F;
   }
 }
 
-@media (min-width: 1207px) {
+@media (min-width: 992px) {
   .navbar {
     display: block;
   }

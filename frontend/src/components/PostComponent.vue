@@ -91,6 +91,10 @@ $post-text-color: #492318;
 $transparent-black: rgba(0, 0, 0, 0.267);
 $button-height: 40px;
 
+.post {
+    word-break: break-word;
+}
+
 .recipe-name {
     font-weight: bold;
     margin: 0;

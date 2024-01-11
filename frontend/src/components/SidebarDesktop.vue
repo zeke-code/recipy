@@ -77,7 +77,7 @@ $hover-link-color: #F27B5B;
     }
 }
 
-@media (min-width: 1207px) {
+@media (min-width: 992px) {
   #column {
     display: block;
   }

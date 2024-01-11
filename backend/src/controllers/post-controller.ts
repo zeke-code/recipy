@@ -235,9 +235,13 @@ export async function getPopularPosts(req: Request, res: Response) {
         r.description, 
         r.title, 
         r.img_post,
-        COUNT(l.username) AS like_count
+        COUNT(DISTINCT l.username) AS like_count,
+        COUNT(DISTINCT c.comment_id) AS comment_count,
+        COUNT(DISTINCT f.username) as favorite_count
         FROM recipes r
         LEFT JOIN likes l ON r.recipe_id = l.recipe_id
+        LEFT JOIN comments c ON r.recipe_id = c.recipe_id
+        LEFT JOIN favorites f on r.recipe_id = f.recipe_id
         GROUP BY r.recipe_id
         ORDER BY like_count DESC
         `

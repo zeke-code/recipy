@@ -5,10 +5,11 @@
             <div class="recipe-text mt-4 fw-semibold">
                 <p>{{ postDetails[0].description }}</p>
             </div>
+            <div id="divider" />
             <div class="form-wrapper">
                 <form @submit.prevent="submitComment">
                     <label for="commentForm" class="form-label visually-hidden">Write your comment here!</label>
-                    <textarea class="form-control mt-4" id="commentForm" rows="3" placeholder="Write your comment here!" v-model="commentText" required />
+                    <textarea class="form-control mt-3" id="commentForm" rows="3" placeholder="Write your comment here!" v-model="commentText" required />
                     <button type="submit" class="btn mt-3">Submit</button>
                 </form>
                 <div v-if="showAlert" class="alert alert-success mt-3" role="alert">
@@ -103,12 +104,20 @@ $comment-form-color: rgba(224, 123, 55, 0.788);
 .post-wrapper {
     padding: 10px;
     max-width: 641px;
+    white-space: pre-line;
     word-wrap: break-word;
+}
+
+#divider {
+    border-top: 1px solid black;
+    width: 100%;
+    margin-top: 20px;
 }
 
 .comment-wrapper {
     width: 100%;
     padding: 2%;
+    white-space: pre-line;
     background-color: $post-wrapper-color;
     border-radius: 20px;
     border: 1px solid black;

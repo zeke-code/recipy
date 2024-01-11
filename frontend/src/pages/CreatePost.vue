@@ -15,7 +15,7 @@
                         <option v-for="country in countries" :key="country" :value="country"> {{ country }}</option>
                     </select>
                     <label class="visually-hidden" for="fileInput">Upload your picture here</label>
-                    <input type="file" @change="handleImageUpload" class="form-control" id="fileInput" accept="image/*" />
+                    <input type="file" @change="handleImageUpload" class="form-control" id="fileInput" accept="image/*" required />
                 </div>
 
                 <div class="mb-3">
