@@ -29,8 +29,9 @@ Recipy è stato progettato per essere mobile first a causa della sua natura intr
 
 Ho iniziato la progettazione partendo dalla UI, sia per Desktop che per mobile:
 
-[mockup mobile]
-[mockup desktop]
+![Android Large - 1](https://github.com/zeke-code/recipy/assets/116798879/c187d2ef-1292-44df-97af-c5ff5311799e)
+![Desktop - 1](https://github.com/zeke-code/recipy/assets/116798879/1747fcef-55b3-46a7-a449-31fd1256261d)
+
 
 Alcuni elementi sono stati rimossi in produzione rispetto ai mockup, come ad esempio il tasto **condividi** e la **bottom navbar nel mockup mobile**; questo a causa di inutilizzo da parte degli utenti che hanno testato l'applicazione.
 
@@ -38,7 +39,8 @@ La scelta dei colori è stata dettata dall'intenzione di rendere l'applicazione 
 
 Sin dall'inizio l'applicazione è stata progettata con l'intenzione di essere una specie di social network; quindi il database è stato progettato proprio con questo in mente.
 
-[dbdiagram]
+![db-diagram](https://github.com/zeke-code/recipy/assets/116798879/1a1f0764-949f-4074-b8c9-8d44e2d0fdfd)
+
 
 Il DB contiene degli attributi che potrebbero essere denormalizzati (ad esmepio nell'entità delle ricette, potremmo avere un attributo chiamato "like_count", per evitare che grossi numeri di like in un post rallentino l'applicazione), ma ciò non è stato fatto per la piccola dimensione dell'applicazione.
 
