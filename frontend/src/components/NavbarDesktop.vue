@@ -14,7 +14,7 @@
           </button>
           <div class="dropdown-menu">
             <router-link to="/profile" class="dropdown-item">Profile</router-link>
-            <router-link to="/logout" class="dropdown-item" @click="logout">Logout</router-link>
+            <router-link to="/" class="dropdown-item" @click="logout">Logout</router-link>
         </div>
         </div>
         <div v-else id="notLoggedIn">

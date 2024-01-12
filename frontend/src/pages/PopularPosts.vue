@@ -1,8 +1,6 @@
 <template>
 <div class="col-sm-12 col-md-10 col-lg-7 offset-lg-5 offset-md-2">
-        <div v-for="post in datiPost" class="post-wrapper d-flex justify-content-center align-items-center mt-4" style="cursor: pointer;">
-            <PostComponent :post="post" />
-        </div>
+    <PostList :posts="datiPost" @load-new-posts="getPopularPosts"/>
 </div>
 </template>
 
@@ -12,9 +10,10 @@ import { useHead } from '@unhead/vue';
 import { Post } from '../types';
 import axios from 'axios';
 import PostComponent from '../components/PostComponent.vue';
+import PostList from '../components/PostList.vue';
 
 export default defineComponent({
-    components: { PostComponent },
+    components: { PostComponent, PostList },
     setup() {
         useHead({
             title: 'Popular | Recipy',
@@ -27,17 +26,30 @@ export default defineComponent({
 
     data() {
         return {
-            datiPost: [] as Post[]
+            datiPost: [] as Post[],
+            noMoreData: false,
+            currentPage: 1
         }
     },
 
     methods: {
         async getPopularPosts() {
-            await axios.get('/api/post/mostpopular')
-                    .then(response => {
-                        this.datiPost = response.data,
-                        console.log(response.data);
-                    })
+            if (this.noMoreData) {
+                alert('No more posts are retrievable.');
+                return;
+            }
+
+            const response = await axios.get('/api/post/mostpopular', {
+                params: { page: this.currentPage }
+            });
+            if (response.data.length < 5) {
+                this.noMoreData = true;
+                this.datiPost = [...this.datiPost, ...response.data];
+            } else {
+                this.datiPost = [...this.datiPost, ...response.data];
+                console.log(this.datiPost)
+                this.currentPage++;
+            }
         }
     },
 

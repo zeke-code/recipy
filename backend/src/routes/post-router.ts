@@ -4,7 +4,7 @@ import upload from '../utils/multerConfig';
 
 const router: Router = Router()
 
-router.get('/api/post/allPosts', postController.allPosts)
+router.get('/api/post/getposts', postController.getPosts)
 router.get('/api/post/:id/details', postController.getPostById)
 router.get('/api/post/:id/comments', postController.getPostComments)
 router.get('/api/search', postController.searchPosts)

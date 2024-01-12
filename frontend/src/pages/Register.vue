@@ -5,7 +5,7 @@
                 <h1>Register On Recipy!</h1>
                 <div class="mb-3">
                   <label for="usernameForm" class="form-label">Username</label>
-                  <input type="text" v-model="username" class="form-control" id="usernameForm" placeholder="Username" aria-describedby="usernameHelp">
+                  <input type="text" maxlength="20" v-model="username" class="form-control" id="usernameForm" placeholder="Username" aria-describedby="usernameHelp">
                   <div id="usernameHelp" class="form-text">Your username will be visible to everyone on Recipy.</div>
                 </div>
                 <div class="mb-3">
