@@ -1,9 +1,9 @@
 <template>
     <div class="col-sm-12 col-md-10 col-lg-7 offset-lg-5 offset-md-2">
         <div class="d-flex">
-            <h2 class="mt-5">Here are your favorite posts, {{ user?.username }}.</h2>
+            <h2 class="mt-5">Here are your favorite posts, <span class="fw-semibold">{{ user?.username }}.</span></h2>
         </div>
-        <PostList :posts="datiPost" />
+        <PostList :posts="datiPost" @load-new-posts="getFavoritePosts"/>
     </div>
 </template>
 
@@ -36,14 +36,28 @@ export default defineComponent({
     data() {
         return {
             datiPost: [] as Post[],
+            noMoreData: false,
+            currentPage: 1
         }
     },
 
     methods: {
         async getFavoritePosts() {
-            await axios.get('/api/profile/favorites')
+            if (this.noMoreData) {
+                alert('No more posts are retrievable.')
+                return;
+            }
+            await axios.get('/api/profile/favorites', {
+                params: { page: this.currentPage }
+            })
                 .then(response => {
-                    this.datiPost = response.data;
+                    if(response.data.length < 5) {
+                        this.noMoreData = true;
+                        this.datiPost = [...this.datiPost, ...response.data];
+                    } else {
+                        this.datiPost = [...this.datiPost, ...response.data];
+                        this.currentPage++;
+                    }
                 })
         }
     },

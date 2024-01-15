@@ -1,6 +1,6 @@
 <template>
     <div class="post">
-        <router-link :to="`/post/${post?.recipe_id}`" style="text-decoration: none; color: inherit;">
+        <router-link :to="`/post/${post?.recipe_id}`" aria-label="View details for this post" style="text-decoration: none; color: inherit;">
       <h4 class="recipe-country">{{ post?.country }} {{ post?.country ? countryFlags[post.country] : '' }}</h4>
       <h3 class="recipe-name">{{ post?.title }} by {{ post?.username }}</h3>
       <img class="post-image" :src="'/img/' + post?.img_post" alt="Recipe's picture">
@@ -51,6 +51,7 @@
     },
     methods: {
         async likePost() {
+            try{
             await axios.post(`/api/post/${this.post?.recipe_id}/like`)
                 .then(response => {
                     if (response.data.success) {
@@ -63,9 +64,14 @@
                         }
                     }
                 })
-        },
-
+            } catch (error: any) {
+            if (error.response && error.response.status === 401) {
+                alert('You need to be logged in to do this interaction.')
+            }
+        }
+    },
         async favoritePost() {
+            try {
             await axios.post(`/api/post/${this.post?.recipe_id}/favorite`)
                 .then(response => {
                     if (response.data.success) {
@@ -78,6 +84,11 @@
                         }
                     }
                 })
+            } catch (error: any) {
+                if (error.response && error.response.status === 401) {
+                    alert('You need to be logged in to do this interaction.')
+                }
+            }
         }
     }
   })

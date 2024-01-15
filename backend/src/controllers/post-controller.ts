@@ -129,6 +129,10 @@ export async function getFavoritePostsByUser(req: Request, res: Response) {
         return;
     }
 
+    const page = parseInt(req.query.page as string) || 1;
+    const limit = 5;
+    const offset = (page - 1) * limit;
+
     const connection = await getConnection();
     const [posts] = await connection.execute(
         `SELECT r.recipe_id, r.country, r.username, r.title, r.description, r.img_post,
@@ -140,8 +144,9 @@ export async function getFavoritePostsByUser(req: Request, res: Response) {
         LEFT JOIN comments c ON r.recipe_id = c.recipe_id
         LEFT JOIN favorites f ON r.recipe_id = f.recipe_id
         WHERE f.username = ?
-        GROUP BY r.recipe_id;`,
-        [user.username]
+        GROUP BY r.recipe_id
+        LIMIT ? OFFSET ?;`,
+        [user.username, limit, offset]
     );
 
     res.json(posts);

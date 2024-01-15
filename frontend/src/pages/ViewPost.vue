@@ -63,7 +63,6 @@ export default defineComponent({
             await axios.get(`/api/post/${this.$route.params.recipe_id}/details`)
                 .then(response => {
                     this.postDetails = response.data[0];
-                    console.log(this.postDetails);
                 })
         },
 
@@ -83,6 +82,7 @@ export default defineComponent({
             .then(response => {
                 if (response.status === 200) {
                     this.showAlert = true;
+                    window.location.reload();
                 }
                 this.commentText = '';
             })

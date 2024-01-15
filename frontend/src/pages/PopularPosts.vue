@@ -47,7 +47,6 @@ export default defineComponent({
                 this.datiPost = [...this.datiPost, ...response.data];
             } else {
                 this.datiPost = [...this.datiPost, ...response.data];
-                console.log(this.datiPost)
                 this.currentPage++;
             }
         }
