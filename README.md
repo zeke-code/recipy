@@ -42,7 +42,7 @@ Sin dall'inizio l'applicazione è stata progettata con l'intenzione di essere un
 ![db-diagram](https://github.com/zeke-code/recipy/assets/116798879/1a1f0764-949f-4074-b8c9-8d44e2d0fdfd)
 
 
-Il DB contiene degli attributi che potrebbero essere denormalizzati (ad esmepio nell'entità delle ricette, potremmo avere un attributo chiamato "like_count", per evitare che grossi numeri di like in un post rallentino l'applicazione), ma ciò non è stato fatto per la piccola dimensione dell'applicazione.
+Il DB potrebbe essere modificato per favorire migliori prestazioni attraverso la denormalizzazione (ad esempio nell'entità delle ricette potremmo avere un attributo chiamato "like_count", per evitare che grossi numeri di like in un post rallentino l'applicazione), ma ciò non è stato fatto per la piccola dimensione dell'applicazione.
 
 
 ## Funzionalità
