@@ -96,6 +96,8 @@ npm run build
 npm run start
 ```
 
+Per far si che gli upload delle immagini funzionino in fase di deployment, **navigare nella cartella backend e creare la cartella public, e nella cartella public creare la cartella figlia img**.
+
 
 ## Crediti
 
