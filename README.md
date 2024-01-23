@@ -103,4 +103,4 @@ Per far si che gli upload delle immagini funzionino in fase di deployment, **nav
 
 - Ezechiele Spina - [zeke-code](https://github.com/zeke-code)
 
-This project was created as an assignment for the Engineering Of Web Systems course of the Technologies of Informatics System department of the University of Bologna.
+This project was created as an assignment for the Engineering Of Web Systems course of the Computer Systems Technologies department of the University of Bologna.
