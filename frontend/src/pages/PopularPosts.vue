@@ -34,11 +34,6 @@ export default defineComponent({
 
     methods: {
         async getPopularPosts() {
-            if (this.noMoreData) {
-                alert('No more posts are retrievable.');
-                return;
-            }
-
             const response = await axios.get('/api/post/mostpopular', {
                 params: { page: this.currentPage }
             });

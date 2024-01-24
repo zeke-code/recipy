@@ -36,11 +36,6 @@ export default defineComponent({
 
     methods: {
         async getPosts() {
-            if (this.noMoreData) {
-                alert('No more posts are retrievable.');
-                return;
-            }
-
             const response = await axios.get('/api/post/getposts', {
                 params: { page: this.currentPage }
             });

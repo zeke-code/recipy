@@ -43,10 +43,6 @@ export default defineComponent({
 
     methods: {
         async getFavoritePosts() {
-            if (this.noMoreData) {
-                alert('No more posts are retrievable.')
-                return;
-            }
             await axios.get('/api/profile/favorites', {
                 params: { page: this.currentPage }
             })
